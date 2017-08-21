@@ -178,13 +178,14 @@ The progress is shown in the Progress tab, where for each sample the percentage 
 
 There are three types of outputs, overall, summarised and details. All will be produced at the end of the analysis.
 
-	A) Overall: 
-	A cross sample illustration of the various tools results. It is useful where more than one sample are analysed. It only covers MLST, resFinder, virulenceFinder and PlasmidFinder tools results. In cases where the identified gene is found in more than one location within a sample, their % identify to that gene are shown within the same cell (Comma separated). Additionally, a text format of sap-diversity tree will be illustrated (when selecting the outbreak option).
+###A) Overall: 
 	
-	B) Summarised:
-	An excel excel file for each sample will be created. Within this sheet, the tools results will be shown (one sheet per tool). These excel files will be grouped in the â€œSummaryâ€ folder.
+A cross sample illustration of the various tools results. It is useful where more than one sample are analysed. It only covers MLST, resFinder, virulenceFinder and PlasmidFinder tools results. In cases where the identified gene is found in more than one location within a sample, their % identify to that gene are shown within the same cell (Comma separated). Additionally, a text format of sap-diversity tree will be illustrated (when selecting the outbreak option).
 	
-	C) Detailed:
-	A folder will be created per sample within the output directory. Within this folder a sub-folders for each of the tools output will be created stating the detailed results for each tools.
+###B) Summarised:
+An excel excel file for each sample will be created. Within this sheet, the tools results will be shown (one sheet per tool). These excel files will be grouped in the â€œSummaryâ€ folder.
 	
-	Additionally, a log-file will be created stating the step-wise update of the tools performed (pipeline.log) and a detailed log-file with their output (log.txt) for any possible errors.
+###C) Detailed:
+A folder will be created per sample within the output directory. Within this folder a sub-folders for each of the tools output will be created stating the detailed results for each tools.
+	
+Additionally, a log-file will be created stating the step-wise update of the tools performed (pipeline.log) and a detailed log-file with their output (log.txt) for any possible errors.
