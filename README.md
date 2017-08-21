@@ -124,20 +124,11 @@ In addition due to license restrictions, usearch has to be downloaded and instal
 
     usearch 8.1.1861
          Available at http://www.drive5.com/usearch/
-
-# Syntax:
-|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
- ||                      Welcome To LMM WGS pipeline                ||
- || Software for analysing whole genome sequencing data||
- ||     for clinical diagnostics and outbreaks assessment     ||
- ||                                 Copyright (C) 2017                            ||
- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
- 
- This is free software, under GNU, also it includes other software also under GNU Copyright
- 
- ####################################################################################################
- Settings and inputs:
- The pipeline can be run in whole or from intermediate/specific step(s), thus it is important to know the expected input for each step if you want to run specific step(s). It start with the raw reads (forward and reverse *.fastq.gz) and process them as following:
+	 
+# Running the pipeline
+The pipeline GUI is initiated by double clicking the executable (.run). The user can start from the raw sequencing data full a comprehensive analysis or a assign specific tools to run. Alternatively, it is possible to start at a specific step within the pipeline and assign specific tools to run. 
+## Inputs:
+The pipeline can be run in whole or from intermediate/specific step(s), thus it is important to know the expected input for each step if you want to run specific step(s). It start with the raw reads (forward and reverse *.fastq.gz) and process them as following:
  a) Trim Galore: quality trimming
 	INPUT: *_R1*.fastq.gz/*_R2*.fastq.gz
 	OUTPUT: *_R1_001_val_1.fq.gz/*_R2_001_val_2.fq.gz
@@ -166,11 +157,10 @@ l) ResFams search (extensive resistance search):
 	INPUT: *.faa (poteins sequences)
 m) Summarise output:
 	OUTPUT: excel file for each sample (each selected tools shown in one sheet)
+##progress:	
+The progress is shown in the Progress tab, where for each sample the percentage of completed steps are shown. When the run is finished the results tab will be accessible and the results will be shown.
 	
-	The progress is shown in the Progress tab, where for each sample the percentage of completed steps are shown. When the run is finished the results tab will be accessible and the results will be shown.
-	
-####################################################################################################
-Output:
+##Output:
 There are three types of outputs, overall, summarised and details. All will be produced at the end of the analysis.
 	A) Overall: A cross sample illustration of the various tools results. It is useful where more than one sample are analysed. It only covers MLST, resFinder, virulenceFinder and PlasmidFinder tools results. In cases where the identified gene is found in more than one location within a sample, their % identify to that gene are shown within the same cell (Comma separated). Additionally, a text format of sap-diversity tree will be illustrated (when selecting the outbreak option).
 	
