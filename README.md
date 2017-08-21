@@ -193,7 +193,7 @@ A folder will be created per sample within the output directory. Within this fol
 Additionally, a log-file will be created stating the step-wise update of the tools performed (pipeline.log) and a detailed log-file with their output (log.txt) for any possible errors.
 
 
-#Contact: 
+## Contact: 
 
 For questions, bugs and suggestions, please refer to XX@X.X
 Developed by XXX 2017
