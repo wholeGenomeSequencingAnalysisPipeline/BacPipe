@@ -5,14 +5,87 @@
 
 Despite rapid advances in whole genome sequencing (WGS) technologies, their integration into routine microbiological diagnostics and infection control has been hampered by the need for downstream bioinformatics analyses that require considerable expertise. We have developed a comprehensive, rapid, and computationally low-resource bioinformatics pipeline (BacPipe) for the analysis of bacterial whole genome sequences obtained from second and third-generation sequencing technologies. Users can choose to directly analyse raw sequencing reads or contigs or scaffolds in BacPipe. The pipeline is an ensemble of state-of-the-art, open-access bioinformatics tools for quality verification, genome assembly and Annotation, and identification of the bacterial genotype (MLST and emm typing), resistance genes, plasmid(s), virulence genes, and single nucleotide polymorphisms (SNPs). The outbreak module in BacPipe can be used, along with the SNPs and patient metadata, to simultaneously analyse many strains to understand evolutionary relationships and rapidly construct bacterial transmission routes. Importantly, BacPipe is designed to run multiple tools simultaneously which considerably reduces the time-to-result. We validated BacPipe using prior published WGS datasets from confirmed outbreaks of MRSA, carbapenem-resistant Klebsiella pneumoniae, and Salmonella enterica, and from transmission studies of Clostridium difficile and Mycobacterium tuberculosis where BacPipe helped build the same analyses and conclusions within a few hours. We believe this fully automated pipeline will contribute to overcoming one of the primary hurdles faced by microbiologists for analysing and interpreting WGS data, facilitating its direct application for routine patient care in hospitals and public health and infection control monitoring.
 
-OCToPUS software can be downloaded from the release section here (https://github.com/M-Mysara/OCToPUS/releases) 
+OCToPUS software can be downloaded from the release section here (https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe/releases) 
 
 # Installation Requirement
-Both Perl and Java needed to be installed to run OCToPUS. All other software packages that are required to run OCToPUS are included in the downloaded file (OCToPUS_V?.run). In case you are interested in the source code of OCToPUS, this is also included in the downloaded file. Only in case you want to run the source code, you will need to install those software components separately, and adapt the source code referring to those software components accordingly. In all other cases, we encourage the end-user to use the OCToPUS_V?.run executable.
+Both Perl and Python needed to be installed to run BacPipe, normally pre-installed in most unix/linux and mac OS. 
+If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/ and https://www.perl.org/get.html respectively.
+
+The following Perl packages needed to be installed to run BacPipe: Time::Piece, XML::Simple, Bio::Perl, Digest::MD5, Try::Tiny::Retry, Bio::TreeIO, SVG::Graph and Excel::Writer::XLSX. To install them follow these commands: 
+
+	sudo cpan Time::Piece 
+	sudo cpan XML::Simple
+	sudo cpan Bio::Perl
+	sudo cpan Digest::MD5
+	sudo cpan Try::Tiny::Retry 
+	sudo cpan Excel::Writer::XLSX
+	sudo cpanm Bio::TreeIO 
+	sudo cpanm SVG::Graph
+
+The following Python packages needed to be installed to run BacPipe: appjar, Yaml. To install them follow these commands: 
+
+sudo pip3 install appjar (or follow the instructions here: appjar.info/Install/)
+sudo pip install pyyaml, python -m pip install, sudo apt-get install python-yaml, or sudo yum install python-yaml
+
+Additionally, other software are required to run BacPipe such as Prokka (annotation tool) and tbl2asn. Detailed Prokka installation can be found here: http://2013-cse801.readthedocs.io/en/latest/week3/prokka-annotation.html. tbl2asn can be obtained and installed as following:
+For mac:
+
+	curl -O ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/tbl2asn/mac.tbl2asn.gz
+	gunzip mac.tbl2asn.gz
+	mv mac.tbl2asn tbl2asn
+	chmod +x tbl2asn
+	cp tbl2asn /usr/local/bin
+
+For unix/Linux:
+
+	curl -O ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/tbl2asn/linux64.tbl2asn.gz
+	gunzip linux64.tbl2asn.gz
+	mv linux64.tbl2asn tbl2asn
+	chmod +x tbl2asn
+	cp tbl2asn /usr/local/bin
+
 
 # Included Software
-Software listed below is used by the OCToPUS algorithm. However you do NOT need to install it separately as these software modules are included in the OCToPUS software.
+Software/Database listed below is used by the BacPipe pipeline. However you do NOT need to install them separately as these software modules are included in the BacPipe software.
 
+VFDB:
+
+	Yang J, Chen LH, Sun LL, Yu J and Jin Q, 2008. VFDB 2008 release: an enhanced web-based resource for comparative pathogenomics. Nucleic Acids Res.
+	Available via: http://www.mgc.ac.cn/VFs/download.htm
+Emm Typing:
+
+	Facklam R, Beall B, Efstratiou A, Fischetti V, Johnson D, Kaplan E, et al. emm Typing and Validation of Provisional M Types for Group A Streptococci. Emerg Infect Dis. 1999;5(2):247-253. 
+	Available via: https://www2a.cdc.gov/ncidod/biotech/strepblast.asp
+ParSNP (v1.2):
+
+	Treangen TJ, Ondov BD, Koren S, Phillippy AM (2014) Rapid Core-Genome Alignment and Visualization for Thousands of Microbial Genomes.
+	Available via: http://harvest.readthedocs.io/en/latest/content/parsnp.html
+CARD (v1.1.7):
+
+	Jia et al. 2017. CARD 2017: expansion and model-centric curation of the Comprehensive Antibiotic Resistance Database. Nucleic Acids Research, 45, D566-573.
+	Available via: https://card.mcmaster.ca
+VirulenceFinder (v1.4):
+
+	Joensen KG, Scheutz F, Lund O, Hasman H, Kaas RS, Nielsen EM, Aarestrup FM, Real-time whole-genome sequencing for routine typing, surveillance, and outbreak detection of verotoxigenic Escherichia coli. J. Clin. Micobiol. 2014. 52(5): 1501-1510.
+	Available via: http://www.genomicepidemiology.org
+ResFinder (v2.1):
+
+	Zankari E, Hasman H, Cosentino S, Vestergaard M, Rasmussen S, Lund O, Aarestrup FM, Larsen MV, Identification of acquired antimicrobial resistance genes, J Antimicrob Chemother. 2012 Jul 10.
+	Available via: http://www.genomicepidemiology.org
+PlasmidFinder (v1.3):
+
+	Carattoli A, Zankari E, Garcia-Fernandez A, Voldby Larsen M, Lund O, Villa L, Aarestrup FM, Hasman H.,PlasmidFinder and pMLST: in silico detection and typing of plasmids. Antimicrob. Agents Chemother. 2014. April 28th.
+MLST (v1.8):
+
+	Larsen MV, Cosentino S, Rasmussen S, Friis C, Hasman H, Marvig RL, Jelsbak L, Sicheritz-Pontén T, Ussery DW, Aarestrup FM and Lund O., Multilocus Sequence Typing of Total Genome Sequenced Bacteria. J. Clin. Micobiol. 2012. 50(4): 1355-1361.
+	Available via: http://www.genomicepidemiology.org
+Resfams (v1.2):
+	
+	Gibson MK, Forsberg KJ, Dantas G. Improved annotation of antibiotic resistance functions reveals microbial resistomes cluster by ecology. The ISME Journal. 2014, doi:ISMEJ.2014.106')
+	Available via: http://www.dantaslab.org/resfams/
+	
+	
+	\nProkka:\n Seemann T, Prokka: Rapid Prokaryotic Genome Annotation, Bioinformatics, 2014 Jul 15;30(14):2068-9.\n
     Mothur v.1.33.3:
          Available at http://www.mothur.org/wiki/Download_mothur. 
          Note about changes made in the mothur package integrated in this package:
