@@ -191,3 +191,9 @@ An excel excel file for each sample will be created. Within this sheet, the tool
 A folder will be created per sample within the output directory. Within this folder a sub-folders for each of the tools output will be created stating the detailed results for each tools.
 	
 Additionally, a log-file will be created stating the step-wise update of the tools performed (pipeline.log) and a detailed log-file with their output (log.txt) for any possible errors.
+
+
+#Contact: 
+
+For questions, bugs and suggestions, please refer to XX@X.X
+Developed by XXX 2017
