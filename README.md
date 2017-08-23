@@ -24,8 +24,8 @@ The following Perl packages needed to be installed to run BacPipe: Time::Piece, 
 
 The following Python packages needed to be installed to run BacPipe: appjar, Yaml. To install them follow these commands: 
 
-sudo pip3 install appjar (or follow the instructions here: appjar.info/Install/)
-sudo pip install pyyaml, python -m pip install, sudo apt-get install python-yaml, or sudo yum install python-yaml
+	sudo pip3 install appjar (or follow the instructions here: appjar.info/Install/)
+	sudo pip install pyyaml, python -m pip install, sudo apt-get install python-yaml, or sudo yum install python-yaml
 
 Additionally, other software are required to run BacPipe such as Prokka (annotation tool) and tbl2asn. Detailed Prokka installation can be found here: http://2013-cse801.readthedocs.io/en/latest/week3/prokka-annotation.html. tbl2asn can be obtained and installed as following:
 For mac:
