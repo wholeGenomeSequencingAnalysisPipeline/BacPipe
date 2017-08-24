@@ -19,12 +19,13 @@ The following Perl packages needed to be installed to run BacPipe: Time::Piece, 
 	sudo cpan Digest::MD5
 	sudo cpan Try::Tiny::Retry 
 	sudo cpan Excel::Writer::XLSX
-	sudo cpanm Bio::TreeIO 
-	sudo cpanm SVG::Graph
+	sudo cpan Bio::TreeIO 
+	sudo cpan SVG::Graph
 
 The following Python packages needed to be installed to run BacPipe: appjar, Yaml. To install them follow these commands: 
-
-	sudo pip3 install appjar (or follow the instructions here: appjar.info/Install/)
+	
+	sudo easy_install pip
+	sudo pip install appjar (or follow the instructions here: appjar.info/Install/)
 	sudo pip install pyyaml, python -m pip install, sudo apt-get install python-yaml, or sudo yum install python-yaml
 
 Additionally, other software are required to run BacPipe such as Prokka (annotation tool) and tbl2asn. Detailed Prokka installation can be found here: 
@@ -37,7 +38,7 @@ tbl2asn can be obtained and installed as following (mac):
 	gunzip mac.tbl2asn.gz
 	mv mac.tbl2asn tbl2asn
 	chmod +x tbl2asn
-	cp tbl2asn /usr/local/bin
+	sudo cp tbl2asn /usr/local/bin
 
 or for unix/Linux tbl2asn can be obtained and installed as following:
 
@@ -45,7 +46,7 @@ or for unix/Linux tbl2asn can be obtained and installed as following:
 	gunzip linux64.tbl2asn.gz
 	mv linux64.tbl2asn tbl2asn
 	chmod +x tbl2asn
-	cp tbl2asn /usr/local/bin
+	sudo cp tbl2asn /usr/local/bin
 
 
 # Included Software
