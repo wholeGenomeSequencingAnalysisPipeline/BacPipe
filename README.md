@@ -27,8 +27,11 @@ The following Python packages needed to be installed to run BacPipe: appjar, Yam
 	sudo pip3 install appjar (or follow the instructions here: appjar.info/Install/)
 	sudo pip install pyyaml, python -m pip install, sudo apt-get install python-yaml, or sudo yum install python-yaml
 
-Additionally, other software are required to run BacPipe such as Prokka (annotation tool) and tbl2asn. Detailed Prokka installation can be found here: http://2013-cse801.readthedocs.io/en/latest/week3/prokka-annotation.html. tbl2asn can be obtained and installed as following:
-For mac:
+Additionally, other software are required to run BacPipe such as Prokka (annotation tool) and tbl2asn. Detailed Prokka installation can be found here: 
+
+	http://www.vicbioinformatics.com/software.prokka.shtml
+
+tbl2asn can be obtained and installed as following (mac):
 
 	curl -O ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/tbl2asn/mac.tbl2asn.gz
 	gunzip mac.tbl2asn.gz
@@ -36,7 +39,7 @@ For mac:
 	chmod +x tbl2asn
 	cp tbl2asn /usr/local/bin
 
-For unix/Linux:
+or for unix/Linux tbl2asn can be obtained and installed as following:
 
 	curl -O ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/tbl2asn/linux64.tbl2asn.gz
 	gunzip linux64.tbl2asn.gz
