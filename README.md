@@ -11,8 +11,9 @@ BacPipe software can be downloaded from the release section here (https://github
 
 BacPipe was tested on mac and Linux (Mint 18 "Sarah"), thus I recommend using either one of them in your virtual machine.
 A very good demonistration of how to create a virtual machine with Mint OS is shown via this video:
-''' 
-% https://www.youtube.com/watch?v=_95fA2hmGYM
+```
+https://www.youtube.com/watch?v=_95fA2hmGYM
+```
 
 # Installation Requirement
 Both Perl and Python needed to be installed to run BacPipe, normally pre-installed in most unix/linux and mac OS. 
