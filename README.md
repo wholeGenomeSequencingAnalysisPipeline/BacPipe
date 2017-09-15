@@ -17,7 +17,7 @@ https://www.youtube.com/watch?v=_95fA2hmGYM
 ```
 
 # Installation Requirement
-Both Perl and Python needed to be installed to run BacPipe, normally pre-installed in most unix/linux and mac OS. 
+Both Perl and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and mac OS. 
 If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/ and https://www.perl.org/get.html respectively.
 
 The following Perl packages needed to be installed to run BacPipe: Time::Piece, XML::Simple, Bio::Perl, Digest::MD5, Try::Tiny::Retry, Bio::TreeIO, SVG::Graph and Excel::Writer::XLSX. To install them follow these commands: 
