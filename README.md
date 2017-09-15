@@ -48,7 +48,10 @@ or for unix/Linux tbl2asn can be obtained and installed as following:
 	chmod +x tbl2asn
 	sudo cp tbl2asn /usr/local/bin
 
+Give execution permission to the ".run" file, using:
 
+	chmod +x BacPipe.v?.?.*.run
+	
 # Included Software
 Software/Database listed below is used by the BacPipe pipeline. However you do NOT need to install them separately as these software modules are included in the BacPipe software.
 
