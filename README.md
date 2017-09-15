@@ -7,11 +7,12 @@ Despite rapid advances in whole genome sequencing (WGS) technologies, their inte
 
 BacPipe software can be downloaded from the release section here (https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe/releases) 
 
-# For Windows users (or others who prefer Virtualization)
+# For Windows users (or those who prefer Virtualization)
 
-BacPipe was tested on mac and Linux (Mint 18 "Sarah"), thus I recommend using either one of them in your virtual machine.
-A very good demonistration of how to create a virtual machine with Mint OS is shown via this video:
+BacPipe was tested on mac and Linux (Mint 18 "Sarah"), thus I recommend using either one of them as your virtual machine.
+A very good demonistrations on how to create a virtual machine with Mac or Mint OS are shown via this video:
 ```
+https://www.youtube.com/watch?v=_cPlKqp8nEA
 https://www.youtube.com/watch?v=_95fA2hmGYM
 ```
 
