@@ -142,7 +142,14 @@ In addition due to license restrictions, usearch has to be downloaded and instal
          Available at http://www.drive5.com/usearch/
 	 
 # Running the pipeline
-The pipeline GUI is initiated by double clicking the executable (.run). The user can start from the raw sequencing data full a comprehensive analysis or a assign specific tools to run. Alternatively, it is possible to start at a specific step within the pipeline and assign specific tools to run. 
+The pipeline GUI is initiated by double clicking the executable (.run). Alternatively, the tool can be called from the terminal via running:
+```
+./BacPipe_unix.v?.?.run
+```
+```
+./BacPipe_mac.v?.?.run
+```
+The user can start from the raw sequencing data full a comprehensive analysis or a assign specific tools to run. Alternatively, it is possible to start at a specific step within the pipeline and assign specific tools to run. 
 ## Inputs:
 The pipeline can be run in whole or from intermediate/specific step(s), thus it is important to know the expected input for each step if you want to run specific step(s). It start with the raw reads (forward and reverse *.fastq.gz) and process them as following:
  a) Trim Galore: quality trimming
