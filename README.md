@@ -22,15 +22,36 @@ If not, Python and Perl can be downloaded and installed via these instructions: 
 
 The following Perl packages needed to be installed to run BacPipe: Time::Piece, XML::Simple, Bio::Perl, Digest::MD5, Try::Tiny::Retry, Bio::TreeIO, SVG::Graph and Excel::Writer::XLSX. To install them follow these commands: 
 
-	sudo cpan Time::Piece 
-	sudo cpan XML::Simple
-	sudo cpan Bio::Perl
-	sudo cpan Digest::MD5
-	sudo cpan Try::Tiny::Retry 
-	sudo cpan Excel::Writer::XLSX
-	sudo cpan Bio::TreeIO 
-	sudo cpan SVG::Graph
+You need to install them as following:
 
+**Centos/Fedora/RHEL (RPM)**
+```bash
+sudo yum install perl-Try-Tiny
+sudo yum install perl-Writer-XLSX
+sudo yum install perl-Time-Piece
+sudo yum install perl-XML-Simple
+sudo yum install perl-Digest-MD5
+sudo yum install git java perl-CPAN perl-Module-Build
+sudo cpan -i Bio::Perl
+```
+**Ubuntu/Debian/Mint (APT)**
+```bash
+sudo apt-get install libtry-tiny-perl
+sudo apt-get install libexcel-writer-xlsx-perl
+sudo apt-get install libdatetime-perl
+sudo apt-get install libxml-simple-perl
+sudo apt-get install libdigest-md5-perl
+sudo apt-get install git default-jre bioperl
+```
+**Mac OS X**
+```bash
+sudo cpan Time::Piece
+sudo cpan XML::Simple
+sudo cpan Digest::MD5
+sudo cpan Bio::Perl
+sudo cpan Try::Tiny::Retry
+sudo cpan Excel::Writer::XLSX
+```
 The following Python packages needed to be installed to run BacPipe: appjar, Yaml. To install them follow these commands: 
 	
 	sudo easy_install pip
