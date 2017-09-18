@@ -57,9 +57,15 @@ or for unix/Linux tbl2asn can be obtained and installed as following:
 	chmod +x tbl2asn
 	sudo cp tbl2asn /usr/local/bin
 
-Give execution permission to the ".run" file, using:
+Give execution permission to the ".run" file, using (for unix):
+```
+chmod +x BacPipe_unix.v?.?.*.run
+```
+or for mac:
+```
+chmod +x BacPipe_mac .v?.?.*.run
 
-	chmod +x BacPipe.v?.?.*.run
+```
 	
 # Included Software
 Software/Database listed below is used by the BacPipe pipeline. However you do NOT need to install them separately as these software modules are included in the BacPipe software.
@@ -142,13 +148,23 @@ In addition due to license restrictions, usearch has to be downloaded and instal
          Available at http://www.drive5.com/usearch/
 	 
 # Running the pipeline
-The pipeline GUI is initiated by double clicking the executable (.run). Alternatively, the tool can be called from the terminal via running:
+The pipeline GUI is initiated by double clicking the executable (.run). Alternatively, the tool can be called from the terminal via running (for unix):
 ```
 ./BacPipe_unix.v?.?.run
 ```
+or for mac
 ```
 ./BacPipe_mac.v?.?.run
 ```
+If the user wants the single bundel to be extracted in a specific location (rather than the tmp folder which is deleted post analysis), please add "--target PATH" after running the tool, as following (for unix):
+```
+./BacPipe_unix.v?.?.run --target /PATH/to/extraction/location/
+```
+or for mac
+```
+./BacPipe_mac.v?.?.run --target /PATH/to/extraction/location/
+```
+
 The user can start from the raw sequencing data full a comprehensive analysis or a assign specific tools to run. Alternatively, it is possible to start at a specific step within the pipeline and assign specific tools to run. 
 ## Inputs:
 The pipeline can be run in whole or from intermediate/specific step(s), thus it is important to know the expected input for each step if you want to run specific step(s). It start with the raw reads (forward and reverse *.fastq.gz) and process them as following:
