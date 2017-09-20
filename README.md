@@ -15,7 +15,7 @@ A very good demonistrations on how to create a virtual machine with macOS Sierra
 https://www.youtube.com/watch?v=_cPlKqp8nEA
 https://www.youtube.com/watch?v=_95fA2hmGYM
 ```
-To install MacOS Sierra on Windows, you can follow the instructions detailed via this link:
+To install MacOS Sierra on Windows, you can follow the instructions detailed via this link (please check its legality within MacOS license):
 ```
 http://www.wikigain.com/install-macos-sierra-10-12-virtualbox/
 ```
