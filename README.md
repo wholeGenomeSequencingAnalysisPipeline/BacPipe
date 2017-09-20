@@ -21,21 +21,24 @@ http://www.wikigain.com/install-macos-sierra-10-12-virtualbox/
 ```
 Please not that in Step #5 "Add VirtualBox Code to the CMD" the CMD has to be opened with administrator privilege and the Virtual tool has to be closed.
 
-# Installation Requirement
-Both Perl and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and mac OS. 
-If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/ and https://www.perl.org/get.html respectively.
-
+# Installation 
 ## An automatic installation script is added (but require sudo privilege)
 To start the script please type:
 ```
 ./BacPipe.v?.?.mac.run install
 ./BacPipe.v?.?.unix.run install
+Both Perl and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and mac OS. 
+If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/ and https://www.perl.org/get.html respectively.
+
+
 ```
 or for extracted folder
 ```
 ./Main.command install
 ```
+
 ## Detailed installation steps (if needed)
+
 The following Perl packages needed to be installed to run BacPipe: Time::Piece, XML::Simple, Bio::Perl, Digest::MD5, Try::Tiny::Retry, Bio::TreeIO, SVG::Graph and Excel::Writer::XLSX. To install them follow these commands: 
 
 You need to install them as following:
@@ -66,7 +69,7 @@ sudo cpan Digest::MD5
 sudo cpan Bio::Perl
 ```
 
-```
+
 The following Python packages needed to be installed to run BacPipe: appjar, Yaml. To install them follow these commands: 
 	
 	sudo easy_install pip
@@ -103,7 +106,7 @@ chmod +x BacPipe_mac .v?.?.*.run
 
 ```
 	
-# Included Software
+# Included software and licence
 Software/Database listed below is used by the BacPipe pipeline. However you do NOT need to install them separately as these software modules are included in the BacPipe software.
 
 VFDB:
