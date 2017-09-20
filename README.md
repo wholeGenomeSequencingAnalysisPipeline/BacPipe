@@ -23,14 +23,13 @@ Please not that in Step #5 "Add VirtualBox Code to the CMD" the CMD has to be op
 
 # Installation 
 ## An automatic installation script is added (but require sudo privilege)
+Perl, java and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and macOS (except java for macOS). If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/, https://www.java.com/en/downloads and https://www.perl.org/get.html respectively.
+
+
 To start the script please type:
 ```
 ./BacPipe.v?.?.mac.run install
 ./BacPipe.v?.?.unix.run install
-Both Perl and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and mac OS. 
-If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/ and https://www.perl.org/get.html respectively.
-
-
 ```
 or for extracted folder
 ```
