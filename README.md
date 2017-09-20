@@ -9,17 +9,33 @@ BacPipe software can be downloaded from the release section here (https://github
 
 # For Windows users (or those who prefer Virtualization)
 
-BacPipe was tested on mac and Linux (Mint 18 "Sarah"), thus I recommend using either one of them as your virtual machine.
-A very good demonistrations on how to create a virtual machine with Mac or Mint OS are shown via this video:
+BacPipe was tested on macOS Sierra and Linux (Mint 18 "Sarah") both virtual and physical, thus I recommend using either one of them as your virtual machine.
+A very good demonistrations on how to create a virtual machine with macOS Sierra or Mint OS are shown via this video:
 ```
 https://www.youtube.com/watch?v=_cPlKqp8nEA
 https://www.youtube.com/watch?v=_95fA2hmGYM
 ```
+To install MacOS Sierra on Windows, you can follow the instructions detailed via this link:
+```
+http://www.wikigain.com/install-macos-sierra-10-12-virtualbox/
+```
+Please not that in Step #5 "Add VirtualBox Code to the CMD" the CMD has to be opened with administrator privilege and the Virtual tool has to be closed.
 
 # Installation Requirement
 Both Perl and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and mac OS. 
 If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/ and https://www.perl.org/get.html respectively.
 
+## An automatic installation script is added (but require sudo privilege)
+To start the script please type:
+```
+./BacPipe.v?.?.mac.run install
+./BacPipe.v?.?.unix.run install
+```
+or for extracted folder
+```
+./Main.command install
+```
+## Detailed installation steps (if needed)
 The following Perl packages needed to be installed to run BacPipe: Time::Piece, XML::Simple, Bio::Perl, Digest::MD5, Try::Tiny::Retry, Bio::TreeIO, SVG::Graph and Excel::Writer::XLSX. To install them follow these commands: 
 
 You need to install them as following:
@@ -170,19 +186,19 @@ In addition due to license restrictions, usearch has to be downloaded and instal
 # Running the pipeline
 The pipeline GUI is initiated by double clicking the executable (.run). Alternatively, the tool can be called from the terminal via running (for unix):
 ```
-./BacPipe_unix.v?.?.run
+./BacPipe_unix.v?.?.run run
 ```
 or for mac
 ```
-./BacPipe_mac.v?.?.run
+./BacPipe_mac.v?.?.run run
 ```
 If the user wants the single bundel to be extracted in a specific location (rather than the tmp folder which is deleted post analysis), please add "--target PATH" after running the tool, as following (for unix):
 ```
-./BacPipe_unix.v?.?.run --target /PATH/to/extraction/location/
+./BacPipe_unix.v?.?.run run --target /PATH/to/extraction/location/
 ```
 or for mac
 ```
-./BacPipe_mac.v?.?.run --target /PATH/to/extraction/location/
+./BacPipe_mac.v?.?.run run --target /PATH/to/extraction/location/
 ```
 
 The user can start from the raw sequencing data full a comprehensive analysis or a assign specific tools to run. Alternatively, it is possible to start at a specific step within the pipeline and assign specific tools to run. 
