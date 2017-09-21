@@ -37,8 +37,8 @@ or to the extract the .run file into a folder and install there, please add "--t
 cd /PATH/to/extraction/location/
 ./Main.command install PATH/FOR/Prokka
 ```
-##### Please note that Prokka PATH has to be absolute PATH i.e. /home/users/yourname/Output rather than ./Output
-##### The installation require sudo privilege if you do not have it, you may use the instructions below without "sudo"
+#### Please note that Prokka PATH has to be absolute PATH i.e. "/home/users/yourname/Output" rather than "./Output".
+#### The installation require sudo privilege if you do not have it, you may use the instructions below without "sudo".
 
 ## Detailed installation steps (if needed)
 
