@@ -106,7 +106,6 @@ chmod +x BacPipe_unix.v?.?.*.run
 or for mac:
 ```
 chmod +x BacPipe_mac .v?.?.*.run
-
 ```
 	
 # Included software and licence
