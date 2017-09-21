@@ -22,7 +22,7 @@ http://www.wikigain.com/install-macos-sierra-10-12-virtualbox/
 Please not that in Step #5 "Add VirtualBox Code to the CMD" the CMD has to be opened with administrator privilege and the Virtual tool has to be closed.
 
 # Installation 
-## An automatic installation
+## Automatic installation
 Perl, java and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and macOS (except java for macOS). If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/, https://www.java.com/en/downloads and https://www.perl.org/get.html respectively.
 
 
