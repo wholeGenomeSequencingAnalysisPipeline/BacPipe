@@ -243,7 +243,7 @@ l) ResFams search (extensive resistance search):
 m) Summarise output:
 
 	OUTPUT: excel file for each sample (each selected tools shown in one sheet)
-## progress:
+## Progress:
 
 The progress is shown in the Progress tab, where for each sample the percentage of completed steps are shown. When the run is finished the results tab will be accessible and the results will be shown.
 	
