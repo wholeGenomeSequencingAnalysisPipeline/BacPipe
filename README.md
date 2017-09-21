@@ -26,15 +26,19 @@ Please not that in Step #5 "Add VirtualBox Code to the CMD" the CMD has to be op
 Perl, java and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and macOS (except java for macOS). If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/, https://www.java.com/en/downloads and https://www.perl.org/get.html respectively.
 
 
-To start the script please type:
+To start the installation script please type:
 ```
-./BacPipe.v?.?.mac.run install
-./BacPipe.v?.?.unix.run install
+./BacPipe.v?.?.mac.run install /PATH/FOR/Prokka
+./BacPipe.v?.?.unix.run install PATH/FOR/Prokka
 ```
-or for extracted folder
+or to the extract the .run file into a folder and install there, please add "--target PATH" after running the tool, as following:
 ```
-./Main.command install
+./BacPipe.v?.?.run install /PATH/FOR/Prokka --target /PATH/to/extraction/location/
+cd /PATH/to/extraction/location/
+./Main.command install PATH/FOR/Prokka
 ```
+### Please note that Prokka PATH has to be absolute PATH i.e. /home/users/yourname/Output rather than ./Output
+### The installation require sudo privilege if you do not have it, you may use the instructions below without "sudo"
 
 ## Detailed installation steps (if needed)
 
@@ -186,21 +190,13 @@ In addition due to license restrictions, usearch has to be downloaded and instal
          Available at http://www.drive5.com/usearch/
 	 
 # Running the pipeline
-The pipeline GUI is initiated by double clicking the executable (.run). Alternatively, the tool can be called from the terminal via running (for unix):
+The pipeline GUI is initiated by double clicking the executable (.run). Alternatively, the tool can be called from the terminal via running:
 ```
-./BacPipe_unix.v?.?.run run
+./BacPipe.v?.?.run run
 ```
-or for mac
+If the user wants the single bundel to be extracted in a specific location (rather than the tmp folder which is deleted post analysis), please add "--target PATH" after running the tool, as following:
 ```
-./BacPipe_mac.v?.?.run run
-```
-If the user wants the single bundel to be extracted in a specific location (rather than the tmp folder which is deleted post analysis), please add "--target PATH" after running the tool, as following (for unix):
-```
-./BacPipe_unix.v?.?.run run --target /PATH/to/extraction/location/
-```
-or for mac
-```
-./BacPipe_mac.v?.?.run run --target /PATH/to/extraction/location/
+./BacPipe.v?.?.run run --target /PATH/to/extraction/location/
 ```
 
 The user can start from the raw sequencing data full a comprehensive analysis or a assign specific tools to run. Alternatively, it is possible to start at a specific step within the pipeline and assign specific tools to run. 
