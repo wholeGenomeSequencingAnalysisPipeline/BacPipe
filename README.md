@@ -7,19 +7,6 @@ Despite rapid advances in whole genome sequencing (WGS) technologies, their inte
 
 BacPipe software can be downloaded from the release section here (https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe/releases) 
 
-# For Windows users (or those who prefer Virtualization)
-
-BacPipe was tested on macOS Sierra and Linux (Mint 18 "Sarah") both virtual and physical, thus I recommend using either one of them as your virtual machine.
-A very good demonistrations on how to create a virtual machine with macOS Sierra or Mint OS are shown via this video:
-```
-https://www.youtube.com/watch?v=_cPlKqp8nEA
-https://www.youtube.com/watch?v=_95fA2hmGYM
-```
-To install MacOS Sierra on Windows, you can follow the instructions detailed via this link (please check its legality within MacOS license):
-```
-http://www.wikigain.com/install-macos-sierra-10-12-virtualbox/
-```
-Please not that in Step #5 "Add VirtualBox Code to the CMD" the CMD has to be opened with administrator privilege and the Virtual tool has to be closed.
 
 # Installation 
 ## Automatic installation
@@ -107,6 +94,20 @@ or for mac:
 ```
 chmod +x BacPipe_mac .v?.?.*.run
 ```
+
+## For Windows users (or those who prefer Virtualization)
+
+BacPipe was tested on macOS Sierra and Linux (Mint 18 "Sarah") both virtual and physical, thus I recommend using either one of them as your virtual machine.
+A very good demonistrations on how to create a virtual machine with macOS Sierra or Mint OS are shown via this video:
+```
+https://www.youtube.com/watch?v=_cPlKqp8nEA
+https://www.youtube.com/watch?v=_95fA2hmGYM
+```
+To install MacOS Sierra on Windows, you can follow the instructions detailed via this link (please check its legality within MacOS license):
+```
+http://www.wikigain.com/install-macos-sierra-10-12-virtualbox/
+```
+Please not that in Step #5 "Add VirtualBox Code to the CMD" the CMD has to be opened with administrator privilege and the Virtual tool has to be closed.
 	
 # Included software and licence
 Software/Database listed below is used by the BacPipe pipeline. However you do NOT need to install them separately as these software modules are included in the BacPipe software.
