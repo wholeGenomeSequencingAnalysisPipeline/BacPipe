@@ -13,7 +13,11 @@ BacPipe software can be downloaded from the release section here (https://github
 Perl, java and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and macOS (except java for macOS). If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/, https://www.java.com/en/downloads and https://www.perl.org/get.html respectively.
 
 
-An automatic installation script is added (but require sudo privilege). To start the installation script please type:
+An automatic installation script is added (but require sudo privilege). To start the installation first you have to give execution permission to the ".run" file:
+```
+chmod +x BacPipe.v?.?.*.run
+```
+Then you need to run the installation script, as following:
 ```
 ./BacPipe.v?.?.mac.run install /PATH/FOR/Prokka
 ./BacPipe.v?.?.unix.run install PATH/FOR/Prokka
@@ -86,14 +90,7 @@ or for unix/Linux tbl2asn can be obtained and installed as following:
 	chmod +x tbl2asn
 	sudo cp tbl2asn /usr/local/bin
 
-Give execution permission to the ".run" file, using (for unix):
-```
-chmod +x BacPipe_unix.v?.?.*.run
-```
-or for mac:
-```
-chmod +x BacPipe_mac .v?.?.*.run
-```
+
 
 ## For Windows users (or those who prefer Virtualization)
 
