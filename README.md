@@ -199,14 +199,18 @@ If the user wants the single bundel to be extracted in a specific location (rath
 The user can start from the raw sequencing data full a comprehensive analysis or a assign specific tools to run. Alternatively, it is possible to start at a specific step within the pipeline and assign specific tools to run. 
 ## Inputs:
 The pipeline can be run in whole or from intermediate/specific step(s), thus it is important to know the expected input for each step if you want to run specific step(s). It start with the raw reads (forward and reverse *.fastq.gz) and process them as following:
- a) Trim Galore: quality trimming
+
+ a) Trim Galore (quality trimming): Compressed fastq file (as output of sequenced machine
  
 	INPUT: *_R1*.fastq.gz/*_R2*.fastq.gz
 	OUTPUT: *_R1_001_val_1.fq.gz/*_R2_001_val_2.fq.gz
-b) SPAdes: assembly and scaffolding
+b) SPAdes(assembly and scaffolding): Compressed fastq file (as output of TrimGalore)
 
 	INPUT: *_R1_001_val_1.fq.gz/*_R2_001_val_2.fq.gz
 	OUTPUT: *.fasta
+
+### Post-assembly tools (c, d. e, f, g, h, i): assembled contig file (as output of SPAdes)
+
 c) MLST typing:
 
 	INPUT: *.fasta (DNA sequences)
@@ -222,24 +226,25 @@ f) ResFinder (Plasmid mediated Resistance only):
 g) Virulence Finder:
 
 	INPUT: *.fasta (DNA sequences)
-h) Prokka (annotation):
+h) Outbreak assessment (parSNP)
+
+	INPUT: *.fasta (DNA sequences, > 2 files)	
+i) Prokka (annotation):
 
 	INPUT: *.fasta (DNA sequences)
-i) CARD search (extensive resistance search):
+### Post-annotation tools ( j, k, l): protein file (as output of Prokka)
+
+j) CARD search (extensive resistance search):
 
 	INPUT: *.faa (poteins sequences)
-j) VirDB search:
+k) VirDB search:
 
 	INPUT: *.faa (poteins sequences)
-k) Outbreak assessment (parSNP)
 
-	INPUT: *.fasta (DNA sequences, > 2 files)
 l) ResFams search (extensive resistance search):
 
 	INPUT: *.faa (poteins sequences)
-m) Summarise output:
 
-	OUTPUT: excel file for each sample (each selected tools shown in one sheet)
 ## Progress:
 
 The progress is shown in the Progress tab, where for each sample the percentage of completed steps are shown. When the run is finished the results tab will be accessible and the results will be shown.
@@ -250,7 +255,8 @@ There are three types of outputs, overall, summarised and details. All will be p
 
 ### A) Overall: 
 
-A cross sample illustration of the various tools results. It is useful where more than one sample are analysed. It only covers MLST, resFinder, virulenceFinder and PlasmidFinder tools results. In cases where the identified gene is found in more than one location within a sample, their % identify to that gene are shown within the same cell (Comma separated). Additionally, a text format of sap-diversity tree will be illustrated (when selecting the outbreak option).
+A cross sample illustration of the various tools results. It is useful where more than one sample are analysed. It only covers MLST, resFinder, virulenceFinder and PlasmidFinder tools results. In cases where the identified gene is found in more than one location within a sample, their % identify to that gene are shown within the same cell (Comma separated). The alignment and distance calculation between the various isolates calculated via parSNP tools, are summarized in the produced  Newick file ( tree file). This text format of snp-diversity tree can be visualized via Gingr, Figtree (http://tree.bio.ed.ac.uk/software/figtree/), or other online tools according to the user preferences.
+
 	
 ### B) Summarised:
 
