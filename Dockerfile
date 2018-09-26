@@ -1,15 +1,27 @@
 FROM ummidock/fastqc:0.11.7-1
 
-MAINTAINER Mohamed Mysara <mohamed.mysara@sckcen.be>
+MAINTAINER Basil Britto <basilbritto.xavier@uantwerpen.be>
+RUN apt update && apt-get -y install python3-pip curl
+#RUN pip3 install --upgrade cutadapt
 
-FROM ubuntu:16.04
+# Install Trim Galore
+#RUN curl -fsSL https://github.com/FelixKrueger/TrimGalore/archive/0.4.5.tar.gz -o trim_galore.tar.gz
+#RUN tar xvzf trim_galore.tar.gz
+
+#ENV PATH="/NGStools/TrimGalore-0.4.5/:$PATH"
+
+# Install spades
+RUN apt-get update && apt-get -y install bash python python3 wget
 
 WORKDIR /NGStools
+#RUN wget http://cab.spbu.ru/files/release3.12.0/SPAdes-3.12.0-Linux.tar.gz && tar -xf SPAdes-3.12.0-Linux.tar.gz
+#ENV PATH="/NGStools/SPAdes-3.12.0-Linux/bin:$PATH"
 
-RUN apt-get update && apt-get -y install \
-	bash \
-	python \
-	wget
+# Install BLAST
+# Blast+
+#RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.7.1/ncbi-blast-2.7.1+-x64-linux.tar.gz && tar xf ncbi-blast-2.7.1+-x64-linux.tar.gz && rm ncbi-blast-2.7.1+-x64-linux.tar.gz
+
+#ENV PATH="/NGStools/ncbi-blast-2.7.1+/bin:${PATH}"
 
 # Install Prokka
 # Dependencies
@@ -45,6 +57,64 @@ RUN wget ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/tbl2asn
 
 ENV PATH="/NGStools/gff3toembl/gff3toembl/scripts:/NGStools/ncbi-blast-2.7.1+/bin:/NGStools/cd-hit-v4.6.8-2017-0621:/NGStools/cd-hit-v4.6.8-2017-0621/cd-hit-auxtools:/NGStools/exonerate-2.2.0-x86_64/bin:/NGStools/prokka/bin:${PATH}" LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" PYTHONPATH="/NGStools/gff3toembl/gff3toembl:$PYTHONPATH"
 
+# Install parsnp
+WORKDIR /NGStools
+
+#RUN wget https://github.com/marbl/parsnp/releases/download/v1.2/parsnp-Linux64-v1.2.tar.gz
+#RUN tar -xvf parsnp-Linux64-v1.2.tar.gz
+
+#ENV PATH="/NGStools/Parsnp-Linux64-v1.2:$PATH"
+
+# Install CARD
+#WORKDIR /NGStools/card
+
+#RUN wget https://card.mcmaster.ca/download/6/prevalence-v3.0.1.tar.gz
+#RUN tar -xvf prevalence-v3.0.1.tar.gz
+#RUN rm prevalence-v3.0.1.tar.gz
+
+#RUN mkdir nucleotide protein
+#RUN mv protein_* protein/
+#RUN mv nucleotide_* nucleotide/
+
+# Install emmtyping
+#WORKDIR /NGStools/emmtyping
+
+#COPY emm_trimmed.fasta emm_trimmed.fasta
+
+# Install mlstfinder
+#WORKDIR /NGStools/mlstfinder
+
+#RUN apt update && apt install unzip
+
+#RUN wget https://bitbucket.org/genomicepidemiology/mlst_db/get/035f642871f6.zip
+#RUN unzip 035f642871f6.zip
+
+# Install plasmidfinder
+#WORKDIR /NGStools/plasmidfinder
+
+#COPY plasmidfinder_20_2_2017.zip plasmidfinder_20_2_2017.zip
+
+#RUN unzip plasmidfinder_20_2_2017.zip
+
+# Install resfinder
+#WORKDIR /NGStools/resfinder
+
+#COPY resfinder_2_11_2016.zip resfinder_2_11_2016.zip
+
+#RUN unzip resfinder_2_11_2016.zip
+
+# Install virdb
+#WORKDIR /NGStools/virdb
+
+#COPY VFDB_setA_pro.fas VFDB_setA_pro.fas
+
+# Install virulencefinder
+#WORKDIR /NGStools/virulencefinder
+
+#COPY virulencefinder_16_3_2016.zip virulencefinder_16_3_2016.zip
+
+#RUN unzip virulencefinder_16_3_2016.zip
+
 # Install bacpipe
 WORKDIR /NGStools/BacPipe
 
@@ -67,3 +137,4 @@ RUN cpanm Excel::Writer::XLSX
 
 WORKDIR /NGStools/BacPipe
 
+CMD /NGStools/BacPipe/BacPipe.v1.7.unix.run run
