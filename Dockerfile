@@ -1,4 +1,4 @@
-FROM FROM ubuntu:16.04
+FROM ubuntu:16.04
 
 MAINTAINER Basil Britto <basilbritto.xavier@uantwerpen.be> and Mohamed Mysara <mohamed.mysara@sckcen.be>
 RUN apt update && apt-get -y install python3-pip curl
@@ -11,7 +11,7 @@ RUN apt update && apt-get -y install python3-pip curl
 #ENV PATH="/NGStools/TrimGalore-0.4.5/:$PATH"
 
 # Install spades
-RUN apt-get update && apt-get -y install bash python python3 wget
+RUN apt-get -y install bash python wget
 
 WORKDIR /NGStools
 #RUN wget http://cab.spbu.ru/files/release3.12.0/SPAdes-3.12.0-Linux.tar.gz && tar -xf SPAdes-3.12.0-Linux.tar.gz
@@ -25,7 +25,7 @@ WORKDIR /NGStools
 
 # Install Prokka
 # Dependencies
-RUN apt-get update && apt-get upgrade -y perl && apt-get install -y parallel make wget git python-pip locales && pip install -U setuptools && locale-gen --purge en_US.UTF-8 && DEBIAN_FRONTEND="noninteractive" dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+RUN apt-get upgrade -y perl && apt-get install -y parallel make wget git python-pip locales && pip install -U setuptools && locale-gen --purge en_US.UTF-8 && DEBIAN_FRONTEND="noninteractive" dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 # Barrnap
 RUN wget https://github.com/tseemann/barrnap/archive/0.8.tar.gz && tar xf 0.8.tar.gz && rm 0.8.tar.gz
