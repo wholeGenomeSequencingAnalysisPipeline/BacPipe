@@ -146,8 +146,9 @@ WORKDIR /NGStools/BacPipe
 
 #CMD /NGStools/BacPipe/BacPipe.v1.7.unix.run run
 
-RUN cd ./BacPipe/BacPipe/
-RUN chmod +x –R ./../BacPipe/ 
+WORKDIR /NGStools/BacPipe/BacPipe/BacPipe/
+RUN cd /NGStools/BacPipe/BacPipe/BacPipe/
+RUN chmod +x –R /NGStools/BacPipe/BacPipe/BacPipe/ 
 
-RUN python ./Pipeline unix
+RUN python ./Pipeline.py unix
 
