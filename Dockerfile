@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 MAINTAINER Basil Britto <basilbritto.xavier@uantwerpen.be> and Mohamed Mysara <mohamed.mysara@sckcen.be>
 RUN apt update && apt-get -y install python3-pip curl
-#RUN pip3 install --upgrade cutadapt
+RUN pip3 install --upgrade cutadapt
 
 # Install Trim Galore
 #RUN curl -fsSL https://github.com/FelixKrueger/TrimGalore/archive/0.4.5.tar.gz -o trim_galore.tar.gz
@@ -11,7 +11,11 @@ RUN apt update && apt-get -y install python3-pip curl
 #ENV PATH="/NGStools/TrimGalore-0.4.5/:$PATH"
 
 # Install spades
-RUN apt-get -y install bash python wget
+RUN apt-get update && apt-get -y install \
+	bash \
+	python \
+	python3 \
+	wget
 
 WORKDIR /NGStools
 #RUN wget http://cab.spbu.ru/files/release3.12.0/SPAdes-3.12.0-Linux.tar.gz && tar -xf SPAdes-3.12.0-Linux.tar.gz
@@ -122,6 +126,8 @@ WORKDIR /NGStools/BacPipe
 RUN curl -L https://www.dropbox.com/s/brsxvjlmbqjl2bv/BacPipe.zip?dl=0 > BacPipe.v1.7.unix.zip
 #RUN mv BacPipe.v1.7.unix.run?dl=0 BacPipe.v1.7.unix.run
 RUN unzip BacPipe.v1.7.unix.zip
+RUN rm  BacPipe.v1.7.unix.zip
+
 #RUN chmod +x BacPipe.v1.7.unix.run
 
 WORKDIR /NGStools
