@@ -145,3 +145,9 @@ RUN cpanm Excel::Writer::XLSX
 WORKDIR /NGStools/BacPipe
 
 #CMD /NGStools/BacPipe/BacPipe.v1.7.unix.run run
+
+
+RUN chmod +x –R ./../BacPipe/ 
+
+RUN python ./Pipeline unix
+
