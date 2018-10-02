@@ -134,7 +134,7 @@ WORKDIR /NGStools
 
 RUN apt install -y python-pip python-tk && pip install appJar
 
-RUN \wget -O - https://install.perlbrew.pl | bash
+RUN wget -O - https://install.perlbrew.pl | bash
 ENV PATH=${PATH}:/root/perl5/perlbrew/bin/
 RUN perlbrew install-cpanm
 RUN cpanm Bio::Perl
