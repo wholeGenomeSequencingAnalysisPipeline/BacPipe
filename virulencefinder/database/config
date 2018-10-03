@@ -1,0 +1,13 @@
+# Database configuration file - Describes the content of the database
+# Each db consist of 1 file(s) with the following extensions: fsa
+# Other important files are: notes.txt
+#db_prefix	name	description
+virulence_ecoli	Escherichia coli	virulence gene database for Escherichia coli
+virulence_ent	Enterococcus	virulence gene database for Enterococcus
+eaec	Enteroaggregativ E. coli	virulence gene database for Enteroaggregativ E. coli
+listeria	Listeria	virulence gene database for Listeria
+s.aureus	S. aureus	virulence gene database for S. aureus 
+s.aureus_exoenzyme	S. aureus	exoenzyme gene database for S. aureus   
+s.aureus_hostimm	S. aureus	hostimm gene database for S. aureus
+s.aureus_toxin	S. aureus	toxin gene database for S. aureus
+stx	Shiga-toxin genes	shiga-toxin gene database
