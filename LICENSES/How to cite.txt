@@ -1,0 +1,65 @@
+cutadapt:
+http://journal.embnet.org/index.php/embnetjournal/article/view/200
+
+Trim Galore
+https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/
+
+
+SPAdes:
+https://link.springer.com/chapter/10.1007%2F978-3-642-37195-0_13
+
+ResFinder:
+Identification of acquired antimicrobial resistance genes.
+Zankari E, Hasman H, Cosentino S, Vestergaard M, Rasmussen S, Lund O, Aarestrup FM, Larsen MV.
+J Antimicrob Chemother. 2012 Jul 10.
+
+PlasmidFinder:
+PlasmidFinder and pMLST: in silico detection and typing of plasmids. Carattoli A, Zankari E, Garcia-Fernandez A, Volby Larsen M, Lund O, Villa L, Aarestrup FM, Hasman H. Antimicrob. Agents Chemother. 2014. April 28th. [Epub ahead of print]
+
+VirulenceFinder:
+Real-time whole-genome sequencing for routine typing, surveillance, and outbreak detection of verotoxigenic Escherichia coli. Joensen KG, Scheutz F, Lund O, Hasman H, Kaas RS, Nielsen EM, Aarestrup FM. J. Clin. Micobiol. 2014. 52(5): 1501-1510. [Epub ahead of print]
+
+MLST:
+Multilocus Sequence Typing of Total Genome Sequenced Bacteria. Larsen MV, Cosentino S, Rasmussen S, Friis C, Hasman H, Marvig RL, Jelsbak L, Sicheritz-Pont?n T, Ussery DW, Aarestrup FM and Lund O. J. Clin. Micobiol. 2012. 50(4): 1355-1361. PMID: 22238442 doi: 10.1128/JCM.06094-11 [Epub ahead of print]
+
+EMMTyping:
+Facklam R, Beall B, Efstratiou A, Fischetti V, Johnson D, Kaplan E, et al. emm Typing and Validation of Provisional M Types for Group A Streptococci. Emerg Infect Dis. 1999;5(2):247-253. https://dx.doi.org/10.3201/eid0502.990209
+
+NCBI BLAST:
+Johnson M, Zaretskaya I, Raytselis Y, Merezhuk Y, McGinnis S, & Madden T.L. (2008) "NCBI BLAST: a better web interface" Nucleic Acids Res. 36:W5-W9.
+
+Prokka:
+Seemann T. Prokka: rapid prokaryotic genome annotation. Bioinformatics. 2014 Jul 15;30(14):2068-9. PMID:24642063
+
+Barrnap:
+http://www.vicbioinformatics.com/software.barrnap.shtml
+
+CARD:
+Jia et al. 2017. CARD 2017: expansion and model-centric curation of the Comprehensive Antibiotic Resistance Database. Nucleic Acids Research, 45, D566-573. 
+
+VFDB:
+Chen LH, Zheng DD, Liu B, Yang J and Jin Q, 2016. VFDB 2016: hierarchical and refined dataset for big data analysis-10 years on
+
+Resfam:
+Gibson MK, Forsberg KJ, Dantas G. Improved annotation of antibiotic resistance functions reveals microbial resistomes cluster by ecology. The ISME Journal. 2014, doi:ISMEJ.2014.106 | [PDF] 
+
+ParSNP:
+Treangen TJ*, Ondov BD*, Koren S, Phillippy AM: Rapid Core-Genome Alignment and Visualization for Thousands of Microbial Genomes. bioRxiv (2014). doi: http://dx.doi.org/10.1101/007351
+
+   [FastTree2]
+   
+      Price MN, Dehal PS, Arkin AP: 
+        FastTree 2--approximately maximum-likelihood trees for large alignments. 
+        PLoS One 2010, 5:e9490.
+   
+   [Muscle]
+   
+      Edgar RC:
+        MUSCLE: multiple sequence alignment with high accuracy and high throughput. 
+        Nucleic Acids Research 2004, 32:1792-1797.
+   
+   [PhiPack]
+
+      Bruen TC, Philippe H, Bryant D: 
+        A simple and robust statistical test for detecting the presence of recombination. 
+        Genetics 2006, 172:2665-2681.
