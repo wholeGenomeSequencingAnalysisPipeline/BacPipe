@@ -1,0 +1,57 @@
+directories:
+  reads: "/home/britto/Desktop/Pipeline/Raw_Data"
+  output: "/home/britto/Desktop/Pipeline/Raw_Data"
+
+trim_galore:
+  deactivate: no
+  reads_type: paired
+  quality_threshold: 25
+
+spades:
+  deactivate: no
+  Mode: paired
+  kmer: "77"
+
+mlst_typing:
+  deactivate: no
+  organism: ecoli
+
+plasmids_finder:
+  deactivate: no
+  plasmids_database: gram_negative
+  identity_threshold: 95
+
+resfinder:
+  deactivate: no
+  identity_threshold: 95
+  resistance_database: aminoglycoside,beta-lactamase,colistin,fosfomycin,fusidicacid,macrolide,nitroimidazole,oxazolidinone,phenicol,quinolone,rifampicin,sulphonamide,tetracycline,trimethoprim,glycopeptide
+  min_length: 0.6
+
+cardSearch:
+  deactivate: no
+
+emmTyping:
+  deactivate: no
+
+virulencefinder:
+  deactivate: no
+  identity_threshold: 95
+  virulence_database: virulence_ecoli
+
+parSNP:
+  deactivate: yes
+  parSNP_reference: 
+  parSNP_reference_fsa: 
+
+VirDBSearch:
+  deactivate: no
+
+prokka:
+  deactivate: no
+  prokka_path: /home/britto/Desktop/Pipeline/GUI_Prototype_combined_v1/prokka_1_7/bin/prokka
+
+Output:
+  deactivate: no
+
+Resfams:
+  deactivate: no

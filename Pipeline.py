@@ -102,7 +102,7 @@ input_path=""
 global output_path
 output_path=""
 global prokka_full_path
-prokka_full_path=""
+prokka_full_path="/NGStools/prokka/bin/prokka"
 global parSNP_reference_path
 parSNP_reference_path=""
 global parSNP_reference_fsa_path
@@ -1252,7 +1252,8 @@ def  pipeline(config_f, thread_):
 	global sample_name
 	if trim_galore_flag == 'False':
 		tracker=0
-		for illumina_reads_1 in glob.glob("*_R1*.fastq.gz"):
+		list = [f for f in glob.glob("*_R1_*") if "fastq.gz" in f or "fq.gz" in f ]
+		for illumina_reads_1 in list:
 			logging.info("Reading files ending with _R1_001.fastq.gz for forward and _R1_001.fastq.gz for reverse within the input directory")
 			illumina_reads_2 = illumina_reads_1.replace("_R1_", "_R2_")
 			sample_name = illumina_reads_1[:-9]
@@ -1286,9 +1287,10 @@ def  pipeline(config_f, thread_):
  
 	#Start from trim galore output
 	elif spades_flag == 'False':
-		for illumina_reads_1 in glob.glob("*_R1_001_val_1.fq.gz"):
+		list = [f for f in glob.glob("*_R1_*") if "fastq.gz" in f or "fq.gz" in f ]
+		for illumina_reads_1 in list:
 			logging.info("Reading files ending with _R1_001_val_1.fq.gz for forward and _R2_001_val_2.fq.gz for reverse within the input directory")
-			illumina_reads_2 = illumina_reads_1.replace("_R1_001_val_1", "_R2_001_val_2")
+			illumina_reads_2 = illumina_reads_1.replace("_R1_", "_R2_")
 			sample_name = illumina_reads_1[:-12]
 			os.chdir(output_directory)
 			files_processed = open('files_processed.txt', 'a+')
@@ -1603,11 +1605,11 @@ def press(btn):
 	if btn=="Cancel":
 		app.stop()
 	else:
-		#Cutadapt_flag=app.getCheckBox("Install Cutadapt (first time run)")
-		#if Cutadapt_flag:
-		#	os.chdir(cutadapt_path)
-		#	print "python"
-		#	call(["python","setup.py","install","--user"])
+#		Cutadapt_flag=app.getCheckBox("Install Cutadapt (first time run)")
+#		if Cutadapt_flag:
+#			os.chdir(cutadapt_path)
+#			print "python"
+#			call(["python","setup.py","install","--user"])
 		if input_path == "":
 			print "Please select a valid path for your inputs\n"
 			app.errorBox("Error", "Please select a valid path for your inputs")
