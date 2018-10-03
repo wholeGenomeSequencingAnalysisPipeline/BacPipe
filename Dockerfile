@@ -16,9 +16,11 @@ RUN git clone https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe.g
 
 WORKDIR /BacPipe
 
-RUN apt-get unzip
+#RUN apt-get unzip
 
-RUN unzip /BacPipe/mlst/blast-2.2.26/bin/makeblastdb.zip -d /BacPipe/mlst/blast-2.2.26/bin/
+RUN gunzip -c /BacPipe/mlst/blast-2.2.26/bin/makeblastdb.zip > /BacPipe/mlst/blast-2.2.26/bin/makeblastdb
+
+#RUN unzip /BacPipe/mlst/blast-2.2.26/bin/makeblastdb.zip -d /BacPipe/mlst/blast-2.2.26/bin/
 
 RUN chmod +x -R /BacPipe/
 
