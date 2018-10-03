@@ -102,7 +102,7 @@ input_path=""
 global output_path
 output_path=""
 global prokka_full_path
-prokka_full_path="/NGStools/prokka/bin/prokka"
+prokka_full_path="/BacPipe/prokka/bin/prokka"
 global parSNP_reference_path
 parSNP_reference_path=""
 global parSNP_reference_fsa_path
