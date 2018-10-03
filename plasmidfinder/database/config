@@ -1,0 +1,10 @@
+# Database configuration file - Describes the content of the database
+# Each db consist of 1 file(s) with the following extensions: fsa
+#db_prefix	name	description
+plasmid_enterobacteriaceae Enterobacteriaceae	plasmid database for Enterobacteriaceae
+plasmid_fmaa	Plasmid_fmaa	plasmid database for Frank M¿ller Aarestrup
+plasmid_hhas	Plasmid_hhas	plasmid database for Henrik Hasman
+plasmid_kagjo	plasmid_kagjo	plasmid database for Katrine Grimstrup Joensen
+plasmid_positiv	plasmids for gram positiv	plasmid databse for gram positiv bacteria
+gram_negative	plasmids for gram negative	plasmid databse for gram negative bacteria
+gram_positive	plasmids for gram positive	plasmid databse for gram positive bacteria
