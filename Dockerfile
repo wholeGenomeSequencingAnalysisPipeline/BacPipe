@@ -123,7 +123,8 @@ WORKDIR /NGStools
 WORKDIR /NGStools/BacPipe
 
 #RUN wget https://www.dropbox.com/s/am32gc7u49jigg1/BacPipe.v1.7.unix.run?dl=0
-RUN curl -L https://www.dropbox.com/s/brsxvjlmbqjl2bv/BacPipe.zip?dl=0 > BacPipe.v1.7.unix.zip
+RUN curl -L https://www.dropbox.com/s/pca3yxbqg7pp945/BacPipe.zip?dl=0 > BacPipe.v1.7.unix.zip
+#https://www.dropbox.com/s/brsxvjlmbqjl2bv/BacPipe.zip?dl=0 > BacPipe.v1.7.unix.zip
 #RUN mv BacPipe.v1.7.unix.run?dl=0 BacPipe.v1.7.unix.run
 RUN unzip BacPipe.v1.7.unix.zip
 RUN rm  BacPipe.v1.7.unix.zip
@@ -150,5 +151,5 @@ WORKDIR /NGStools/BacPipe/BacPipe/BacPipe/
 RUN cd /NGStools/BacPipe/BacPipe/BacPipe/
 RUN chmod +x –R /NGStools/BacPipe/BacPipe/BacPipe/ 
 
-RUN python ./Pipeline.py unix
+RUN python /NGStools/BacPipe/BacPipe/BacPipe/Pipeline.py unix
 
