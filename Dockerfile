@@ -18,9 +18,9 @@ WORKDIR /BacPipe
 
 #RUN cd BacPipe
 
-RUN chmod +x -R /BacPipe/
+RUN unzip /BacPipe/mlst/blast-2.2.26/bin/makeblastdb.zip -d /BacPipe/mlst/blast-2.2.26/bin/
 
-#RUN gunzip /BacPipe/mlst/blast-2.2.26/bin/makeblastdb.zip
+RUN chmod +x -R /BacPipe/
 
 RUN apt install -y python-pip python-tk 
 
