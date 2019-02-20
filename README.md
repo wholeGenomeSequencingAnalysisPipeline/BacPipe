@@ -32,7 +32,7 @@ python Pipeline.py unix
 BacPipe software can be downloaded from the release section here (https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe/releases) 
 
 
-#Local installation:
+# 2) Local installation:
 Either using our automatic script or follow the Detailed installation instructions below:
 ## Automatic installation
 Perl, java and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and macOS (except java for macOS). If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/, https://www.java.com/en/downloads and https://www.perl.org/get.html respectively.
