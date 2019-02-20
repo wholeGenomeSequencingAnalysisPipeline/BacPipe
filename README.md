@@ -5,10 +5,35 @@
 
 Despite rapid advances in whole genome sequencing (WGS) technologies, their integration into routine microbiological diagnostics and infection control has been hampered by the need for downstream bioinformatics analyses that require considerable expertise. We have developed a comprehensive, rapid, and computationally low-resource bioinformatics pipeline (BacPipe) for the analysis of bacterial whole genome sequences obtained from second and third-generation sequencing technologies. Users can choose to directly analyse raw sequencing reads or contigs or scaffolds in BacPipe. The pipeline is an ensemble of state-of-the-art, open-access bioinformatics tools for quality verification, genome assembly and Annotation, and identification of the bacterial genotype (MLST and emm typing), resistance genes, plasmid(s), virulence genes, and single nucleotide polymorphisms (SNPs). The outbreak module in BacPipe can be used, along with the SNPs and patient metadata, to simultaneously analyse many strains to understand evolutionary relationships and rapidly construct bacterial transmission routes. Importantly, BacPipe is designed to run multiple tools simultaneously which considerably reduces the time-to-result. We validated BacPipe using prior published WGS datasets from confirmed outbreaks of MRSA, carbapenem-resistant Klebsiella pneumoniae, and Salmonella enterica, and from transmission studies of Clostridium difficile and Mycobacterium tuberculosis where BacPipe helped build the same analyses and conclusions within a few hours. We believe this fully automated pipeline will contribute to overcoming one of the primary hurdles faced by microbiologists for analysing and interpreting WGS data, facilitating its direct application for routine patient care in hospitals and public health and infection control monitoring.
 
+BacPipe can run using docker image (recommended, platform independent) or via locally installed copy (unix/mac):
+
+# 1) Docker image installation (recommended)
+To run the image of Bacpipe with the GUI, for windows, unix, and mac (OIS), the following steps can be followed:
+1 - Install Docker for your operating system. (https://docs.docker.com/install/)
+2 - Pull the Bacpipe main image (takes 15-25 minutes to download and install all dependencies)
+```
+	docker pull mahmed/bacpipe
+```
+3 - Run X window System (X11) to allow the visualization of the Bacpipe GUI run by docker. 
+```
+	IP=$(ifconfig en0 | grep inet | awk ‘$1==”inet” {print $2}’) xhost + $IP /usr/X11/bin/xhost
+```
+4 - To launch the GUI on unix based systems. run the docker container with the following command.
+```
+	docker run -i -t -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp.X11-unix -v <local_data_folder>:<container_data_folder>
+	-e connects the container X11 with the local machine
+	-v maps the required folders from the local machine to the docker container. 
+```
+5 - Running BacPipe using this command (this should trigger the GUI and start BacPipe):
+```
+python Pipeline.py unix
+```
+
 BacPipe software can be downloaded from the release section here (https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe/releases) 
 
 
-# Installation 
+#Local installation:
+Either using our automatic script or follow the Detailed installation instructions below:
 ## Automatic installation
 Perl, java and Python (2.7) needed to be installed to run BacPipe, normally pre-installed in most unix/linux and macOS (except java for macOS). If not, Python and Perl can be downloaded and installed via these instructions: https://www.python.org/downloads/, https://www.java.com/en/downloads and https://www.perl.org/get.html respectively.
 
