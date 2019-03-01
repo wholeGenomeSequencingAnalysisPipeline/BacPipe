@@ -16,7 +16,9 @@ To run the image of Bacpipe with the GUI, for windows, unix, and mac (OIS), the 
 ```
 3 - Run X window System (X11) to allow the visualization of the Bacpipe GUI run by docker. 
 ```
-	IP=$(ifconfig en0 | grep inet | awk ‘$1==”inet” {print $2}’) xhost + $IP /usr/X11/bin/xhost
+	IP=$(ifconfig en0 | grep inet | awk ‘$1==”inet” {print $2}’) 
+	xhost + $IP 
+	/usr/X11/bin/xhost
 ```
 4 - To launch the GUI on unix based systems. run the docker container with the following command.
 ```
