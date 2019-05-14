@@ -15,6 +15,7 @@ To run the image of Bacpipe with the GUI, for windows, unix, and mac (OIS), the 
 	docker pull mahmed/bacpipe
 ```
 3 - Run X window System (X11) to allow the visualization of the Bacpipe GUI run by docker. 
+
 For mac
 ```
 	IP=$(ifconfig en0 | grep inet | awk ‘$1==”inet” {print $2}’) 
