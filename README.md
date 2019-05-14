@@ -15,21 +15,34 @@ To run the image of Bacpipe with the GUI, for windows, unix, and mac (OIS), the 
 	docker pull mahmed/bacpipe
 ```
 3 - Run X window System (X11) to allow the visualization of the Bacpipe GUI run by docker. 
+For mac
 ```
 	IP=$(ifconfig en0 | grep inet | awk ‘$1==”inet” {print $2}’) 
 	xhost + $IP 
-	/usr/X11/bin/xhost
+	docker run -it -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix \
+	-v <local_data_folder>:<container_data_folder> 	mahmed/bacpipe python ./Pipeline.py unix
+
+#	-e connects the container X11 with the local machine
+#	-v maps the required folders from the local machine to the docker container.
+
+#	For more information: https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/
 ```
-4 - To launch the GUI on unix based systems. run the docker container with the following command.
+For unix 
 ```
-	docker run -i -t -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp.X11-unix -v <local_data_folder>:<container_data_folder>
-	-e connects the container X11 with the local machine
-	-v maps the required folders from the local machine to the docker container. 
+	docker run -it --hostname "YOUR_HOST_ID" --net=host -e DISPLAY=${DISPLAY} \
+	-v ${HOME}/.Xauthority:/root/.Xauthority -v <local_data_folder>:<container_data_folder> \ 
+	mahmed/bacpipe python ./Pipeline.py unix
+
+#	--hostname add you unix machine name (using: hostnamectl command)
+#	-e connects the container X11 with the local machine
+#	-v maps the required folders from the local machine to the docker container.
+
+#	For more information: http://wangkejie.me/2018/01/08/remote-gui-app-in-docker/
+#	This was tested with remote accessing of a unix server from windows machine using Putty, \
+	but X11 needs to be allowed in Putty's setting "under SSH"even when connecting to it remotely via Putty)
 ```
-5 - Running BacPipe using this command (this should trigger the GUI and start BacPipe):
-```
-python Pipeline.py unix
-```
+
+
 
 BacPipe software can be downloaded from the release section here (https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe/releases) 
 
