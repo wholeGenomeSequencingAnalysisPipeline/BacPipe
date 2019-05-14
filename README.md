@@ -26,6 +26,7 @@ For mac
 #	-e connects the container X11 with the local machine
 #	-v maps the required folders from the local machine to the docker container.
 
+#	Install XQuartz from https://www.xquartz.org/
 #	For more information: https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/
 ```
 For unix 
