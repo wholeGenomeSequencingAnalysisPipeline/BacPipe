@@ -41,7 +41,7 @@ For unix
 
 #	For more information: http://wangkejie.me/2018/01/08/remote-gui-app-in-docker/
 #	This was tested with remote accessing of a unix server from windows machine using Putty, \
-	but X11 needs to be allowed in Putty's setting "under SSH"even when connecting to it remotely via Putty)
+	X11 needs to be allowed in Putty's setting "under SSH"
 ```
 
 For Windows 
@@ -49,7 +49,7 @@ For Windows
 	docker run -it --rm -e DISPLAY="YOUR_IP_ADDRESS:0.0" -v <local_data_folder>:<container_data_folder> \
 	mahmed/bacpipe python ./Pipeline.py unix
 
-#	-e connects the container X11 with the local machine, you need to put your IP address (known ipconfig command)
+#	-e connects the container X11 with the local machine, you need to put your IP address (use ipconfig command)
 #	-v maps the required folders from the local machine to the docker container.
 ```
 BacPipe software can be downloaded from the release section here (https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe/releases) 
