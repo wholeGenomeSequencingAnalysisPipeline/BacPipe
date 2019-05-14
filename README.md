@@ -14,7 +14,7 @@ To run the image of Bacpipe with the GUI, for windows, unix, and mac (OIS), the 
 ```
 	docker pull mahmed/bacpipe
 ```
-3 - Run X window System (X11) to allow the visualization of the Bacpipe GUI run by docker. 
+Run X window System (X11) to allow the visualization of the Bacpipe GUI run by docker. 
 
 For mac
 ```
@@ -44,8 +44,14 @@ For unix
 	but X11 needs to be allowed in Putty's setting "under SSH"even when connecting to it remotely via Putty)
 ```
 
+For Windows 
+```
+	docker run -it --rm -e DISPLAY="YOUR_IP_ADDRESS:0.0" -v <local_data_folder>:<container_data_folder> \
+	mahmed/bacpipe python ./Pipeline.py unix
 
-
+#	-e connects the container X11 with the local machine, you need to put your IP address (known ipconfig command)
+#	-v maps the required folders from the local machine to the docker container.
+```
 BacPipe software can be downloaded from the release section here (https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe/releases) 
 
 
