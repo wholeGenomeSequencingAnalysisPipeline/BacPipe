@@ -164,7 +164,7 @@ VFDB:
 Emm Typing:
 
 	Facklam R, Beall B, Efstratiou A, Fischetti V, Johnson D, Kaplan E, et al. emm Typing and Validation of Provisional M Types for Group A Streptococci. Emerg Infect Dis. 1999;5(2):247-253. 
-	Available at: https://www2a.cdc.gov/ncidod/biotech/strepblast.asp
+	Available at: ftp://ftp.cdc.gov/pub/infectious_diseases/biotech/tsemm/trimmed.tfa
 	Licence: GNU
 ParSNP (v1.2):
 
@@ -319,5 +319,5 @@ Additionally, a log-file will be created stating the step-wise update of the too
 
 # Contact: 
 
-For questions, bugs and suggestions, please refer to XX@X.X
-Developed by XXX 2017
+For questions, bugs and suggestions, please refer to basilbritto.xavier@uantwerpen.be and mohamed.mysara@gmail.com 
+Developed by Mohamed Mysara 2019
