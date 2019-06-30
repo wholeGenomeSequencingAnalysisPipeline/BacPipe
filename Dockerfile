@@ -38,6 +38,7 @@ RUN apt-get update && apt-get upgrade -y perl && apt-get install -y parallel mak
 RUN wget https://github.com/tseemann/barrnap/archive/0.8.tar.gz && tar xf 0.8.tar.gz && rm 0.8.tar.gz
 
 
+
 # Infernal
 RUN wget http://eddylab.org/infernal/infernal-1.1.2-linux-intel-gcc.tar.gz && tar xf infernal-1.1.2-linux-intel-gcc.tar.gz && rm infernal-1.1.2-linux-intel-gcc.tar.gz && cd infernal-1.1.2-linux-intel-gcc && ./configure && make && make install && cd easel && make install && rm -rf infernal-1.1.2-linux-intel-gcc/
 
