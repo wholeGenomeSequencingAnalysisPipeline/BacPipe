@@ -5,10 +5,10 @@ MAINTAINER Basil Britto <basilbritto.xavier@uantwerpen.be> and Mohamed Mysara <m
 RUN apt update && apt-get -y install python3-pip curl
 
 RUN apt-get update && apt-get -y install \
-	bash \
-	python \
-	python3 \
-	wget
+bash \
+python \
+python3 \
+wget
 
 RUN apt-get upgrade -y perl && apt-get install -y parallel make wget git python-pip locales && pip install -U setuptools && locale-gen --purge en_US.UTF-8 && DEBIAN_FRONTEND="noninteractive" dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
@@ -24,7 +24,7 @@ RUN gunzip -c /BacPipe/mlst/blast-2.2.26/bin/makeblastdb.zip > /BacPipe/mlst/bla
 
 RUN chmod +x -R /BacPipe/
 
-RUN apt install -y python-pip python-tk 
+RUN apt install -y python-pip python-tk
 
 RUN pip3 install --upgrade cutadapt
 
@@ -54,10 +54,10 @@ RUN wget http://ftp.ebi.ac.uk/pub/software/vertebrategenomics/exonerate/exonerat
 RUN apt-get install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl default-jre bioperl && git clone https://github.com/tseemann/prokka.git --branch v1.13.3 && prokka/bin/prokka --setupdb
 # tbl2asn
 RUN wget ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/tbl2asn/linux.tbl2asn.gz && \
-    gunzip linux.tbl2asn.gz && \
-    mv linux.tbl2asn tbl2asn && \
-    chmod +x tbl2asn && \
-    mv tbl2asn /BacPipe/prokka/binaries/linux/
+gunzip linux.tbl2asn.gz && \
+mv linux.tbl2asn tbl2asn && \
+chmod +x tbl2asn && \
+mv tbl2asn /BacPipe/prokka/binaries/linux/
 
 ENV PATH="/BacPipe/gff3toembl/gff3toembl/scripts:/BacPipe/ncbi-blast-2.7.1+/bin:/BacPipe/cd-hit-v4.6.8-2017-0621:/BacPipe/cd-hit-v4.6.8-2017-0621/cd-hit-auxtools:/BacPipe/exonerate-2.2.0-x86_64/bin:/BacPipe/prokka/bin:${PATH}" LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" PYTHONPATH="/BacPipe/gff3toembl/gff3toembl:$PYTHONPATH"
 
@@ -68,4 +68,66 @@ RUN cpanm Bio::Perl
 RUN cpanm LWP::UserAgent
 RUN cpanm Try::Tiny::Retry
 RUN cpanm Excel::Writer::XLSX
+
+#install plasmidfinder
+RUN cd /BacPipe; \
+apt-get update -qq; \
+apt-get install -y -qq git \
+apt-utils \
+wget \
+python3-pip \
+ncbi-blast+ \
+libz-dev \
+; \
+rm -rf /var/cache/apt/* /var/lib/apt/lists/*;
+
+# Install python dependencies
+RUN pip3 install -U biopython tabulate cgecore==1.3.6;
+
+# Install kma
+RUN git clone --branch 1.0.1 --depth 1 https://bitbucket.org/genomicepidemiology/kma.git; \
+cd kma && make; \
+mv kma* /bin/
+WORKDIR /BacPipe
+
+#PLASMIDFINDER update
+##rename outdated plasmidfinder
+RUN mv /BacPipe/plasmidfinder /BacPipe/plasmidfinder_perl
+##download the new version
+RUN git clone https://bitbucket.org/genomicepidemiology/plasmidfinder.git
+WORKDIR /BacPipe/plasmidfinder
+RUN chmod 755 ./plasmidfinder.py;
+##Download the database
+RUN git clone https://bitbucket.org/genomicepidemiology/plasmidfinder_db.git
+WORKDIR /BacPipe/plasmidfinder/plasmidfinder_db
+RUN PLASMID_DB=$(pwd)
+RUN python3 /BacPipe/plasmidfinder/plasmidfinder_db/INSTALL.py kma_index
+WORKDIR /BacPipe
+
+#RESFINDER updates (no need to upgrade the tool only the database)
+#RUN mv /BacPipe/resfinder /BacPipe/resfinder_perl
+#RUN git clone https://git@bitbucket.org/genomicepidemiology/resfinder.git
+WORKDIR /BacPipe/resfinder
+#RUN chmod 755 ./resfinder.py;
+##Download the database
+RUN git clone https://git@bitbucket.org/genomicepidemiology/resfinder_db.git
+WORKDIR /BacPipe/resfinder/resfinder_db
+RUN RES_DB=$(pwd)
+RUN python3 /BacPipe/resfinder/resfinder_db/INSTALL.py kma_index
+WORKDIR /BacPipe
+
+#MLST updates
+##rename outdated plasmidfinder
+RUN mv /BacPipe/mlst /BacPipe/mlst_perl
+##Download the new version
+RUN git clone https://bitbucket.org/genomicepidemiology/mlst.git
+WORKDIR /BacPipe/mlst
+RUN chmod 755 ./mlst.py
+##Download the database
+RUN git clone https://bitbucket.org/genomicepidemiology/mlst_db.git
+WORKDIR /BacPipe/mlst/mlst_db
+RUN MLST_DB=$(pwd)
+RUN python3 /BacPipe/mlst/mlst_db/INSTALL.py kma_index
+RUN mv /BacPipe/mlst_perl/blast-2.2.26 /BacPipe/mlst/
+WORKDIR /BacPipe
 
