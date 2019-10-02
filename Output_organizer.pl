@@ -143,11 +143,21 @@ for(my $i=0;$i<scalar(@arr);$i++){
 			}
 		}
 	}
+	 my$vir=0;
+	 my @tmp=split("\t",$file[0]);
+	 if($tmp[0] eq "Database"){$vir=1;}
+	 my $x=0;my$y=1;
+	 #print $vir."\n";
+	 if($vir==1){$x=1;$y=2;}
 	for(my $j=1;$j<scalar(@file);$j++){
 	 #print $file[$j];
 	 chomp($file[$j]);
 		my @tmp=split("\t",$file[$j]);
+	 #print $x."\t".$y."\t".$tmp[0]."\t".$tmp[1]."\t".$tmp[2]."\n";
+
 	 	if($tmp[0] eq "Gene"){next;}
+	 	elsif($tmp[0] eq "Locus"){next;}
+	 #elsif($tmp[0] eq "Database"){$vir=1;next;}
 	 	elsif($file[$j]=~/Please note /){last;$j=scalar(@file);}
 	 	elsif($file[$j] eq ""){last;}
 	 	#elsif($tmp[0]=~/Organism:/){last;}
@@ -155,11 +165,15 @@ for(my $i=0;$i<scalar(@arr);$i++){
 			#print "!".$tmp[0]."1\n";
 		 	my $marker=0;
 		 	#print $#matrix."\n";
+		 #my $x=0;my$y=1;
+		 #print $vir."\n";
+		 #if($vir==1){$x=1;$y=2;}
 			for(my $o=0;$o<$#matrix+1;$o++){
+			 
 			 #print $tmp[0]."	".$matrix[$o][0]."\n";
-				if($tmp[0] eq $matrix[$o][0]){
+				if($tmp[$x] eq $matrix[$o][0]){
 				 	$marker=1;
-				 	my $value=int($tmp[1])."%";
+				 	my $value=int($tmp[$y])."%";
 					if($matrix[$o][$i+1]){
 						$matrix[$o][$i+1]=$matrix[$o][$i+1].",".$value;
 					}
@@ -171,8 +185,8 @@ for(my $i=0;$i<scalar(@arr);$i++){
 			
 			}
 			if($marker==0){
-			 	my $value=int($tmp[1])."%";
-				$matrix[$#matrix+1][0]=$tmp[0];
+			 	my $value=int($tmp[$y])."%";
+				$matrix[$#matrix+1][0]=$tmp[$x];
 			 	$matrix[$#matrix][$i+1]=$value;
 			}
 		}
