@@ -4,8 +4,7 @@ simp
     br
     {
         enabled true
-        max_relative_coverage       0.5     ; bulge_cov < this * not_bulge_cov
-        ; parallel false
+        max_relative_coverage		1.1	; bulge_cov < this * not_bulge_cov
     }
     
     ; complex bulge remover
@@ -14,14 +13,13 @@ simp
         enabled false
     }
 
-    ; bulge remover:
-    final_br
+    final_tc
     {
-        enabled false
+        condition               ""
     }
 
-    ; relative coverage erroneous component remover:
-    rcc
+    ; bulge remover:
+    final_br
     {
         enabled false
     }

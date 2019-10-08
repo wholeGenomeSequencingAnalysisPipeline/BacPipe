@@ -18,17 +18,18 @@ params {
     multi_path_extend   false
     ; old | 2015 | combined | old_pe_2015
     scaffolding_mode old_pe_2015
+    
+    overlap_removal {
+        enabled true
+        end_start_only  false
+        cut_all false
+    }
 
-    remove_overlaps     true
-    cut_all_overlaps  false
-
-    split_edge_length    99
     normalize_weight     true
     
     ; extension selection
     extension_options
     {
-        use_default_single_threshold true
         single_threshold           0.1
         weight_threshold           0.5
         priority_coeff             1.5
@@ -38,7 +39,6 @@ params {
 
     mate_pair_options
     {
-        use_default_single_threshold true
         single_threshold           30
         weight_threshold           0.5
         priority_coeff             1.5
@@ -61,25 +61,20 @@ params {
         ;next param should be 0.51 - 1.0 if use_old_score = true and 3.0 otherwise
         min_gap_score   0.7
 
-        max_must_overlap  -2
-        max_can_overlap   0.5
+        max_can_overlap   1.
         short_overlap     6
         artificial_gap    10
-        use_old_score   true
 
         min_overlap_length 10
-        flank_addition_coefficient -5.9
-        flank_multiplication_coefficient 0.97
+        flank_multiplication_coefficient .5
+        flank_addition_coefficient 5
 
         var_coeff 3.0
         basic_overlap_coeff 2.0
     }
 
-    path_cleaning
-    {
-        enabled false
-    }
-    
+    path_cleaning_presets ""
+
     use_coordinated_coverage false
     coordinated_coverage
     {
@@ -87,6 +82,14 @@ params {
        delta                  0.5
        min_path_len           1000
     }
+
+
+    simple_coverage_resolver {
+        enabled false
+        coverage_delta 0.5
+        min_upper_coverage 5
+    }
+
 
     scaffolding2015 {
         ; (median * (1+variation) > unique > median * (1 - variation))
@@ -112,6 +115,9 @@ params {
     genome_consistency_checker {
         max_gap 1000
         relative_max_gap 0.2
+        use_main_storage true ; if set to true, next two parameters are set to min_unique_length
+        unresolvable_jump 1000 ; length of unresolvable repeats
+        unique_length 500  ; spelling genome in the alphabet of edges longer than this          
     }
 
     uniqueness_analyser {
