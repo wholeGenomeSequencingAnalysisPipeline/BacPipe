@@ -71,7 +71,7 @@ elif OSystem == "unix":
 	cutadapt=str(pipeline_path+'/cutadapt-1.12/cutadapt/cutadapt')
 	cutadapt_path=str(pipeline_path+'/cutadapt-1.12/')
 	trimgalore_path=str(pipeline_path+'/trim_galore_v0.4.2/trim_galore')
-	spades_path=os.path.join(pipeline_path+'/SPAdes-3.10.0-Linux/bin/spades.py')
+	spades_path=os.path.join(pipeline_path+'/SPAdes-3.13.0-Linux/bin/spades.py')
 	mlst_ncbi_path=os.path.join(pipeline_path+'/mlst/blast-2.2.26/')
 	plasmidfinder_ncbi_path=os.path.join(pipeline_path+'/mlst/blast-2.2.26/')
 	resistancefinder_ncbi_path=os.path.join(pipeline_path+'/mlst/blast-2.2.26/')
