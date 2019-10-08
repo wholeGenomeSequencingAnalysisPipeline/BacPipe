@@ -798,19 +798,19 @@ def  pipeline(config_f, thread_):
 		if not os.path.exists(mlst_directory):
 			os.makedirs(mlst_directory)
 		logging.info("MLST typing...")
-		mlst_path=os.path.join(pipeline_path+'/mlst/mlst.py')
+		#mlst_path=os.path.join(pipeline_path+'/mlst/mlst.py')
+		mlst_path=os.path.join(pipeline_path+'/mlst/mlst.pl')
 		mlst_DB_path=os.path.join(pipeline_path+'/mlst/mlst_db/')
 		#mlst_ncbi_path=os.path.join(pipeline_path+'/mlst/blast-2.2.26/')
 		with open(file_out, 'a') as logf:
-		 #subprocess.call([mlst_path, "-i", mlst_assembly, "-o", mlst_directory, "-d", mlst_DB_path, "-s", organism, "-b", mlst_ncbi_path], stdout=logf)
-			print "python3.5 %s -i %s -o %s -p  %s -s %s -x" % (mlst_path,mlst_assembly,mlst_directory,mlst_DB_path,organism)
-			subprocess.call(["python3.5",mlst_path,"-i",mlst_assembly,"-o", mlst_directory, "-p", mlst_DB_path,"-s", organism,"-x"], stdout=logf)
-		
-		
-		
+			subprocess.call([mlst_path, "-i", mlst_assembly, "-o", mlst_directory, "-d", mlst_DB_path, "-s", organism, "-b", mlst_ncbi_path], stdout=logf)
+			#print "python3.5 %s -i %s -o %s -p  %s -s %s -x" % (mlst_path,mlst_assembly,mlst_directory,mlst_DB_path,organism)
+			#subprocess.call(["python3.5",mlst_path,"-i",mlst_assembly,"-o", mlst_directory, "-p", mlst_DB_path,"-s", organism,"-x"], stdout=logf)
+
 		logging.info("MLST finished "+sample_name)
 		global mlst_output
-		mlst_output=mlst_directory+'/results_tab.tsv'
+		mlst_output=mlst_directory+'/results_tab.txt'
+		#mlst_output=mlst_directory+'/results_tab.tsv'
 		global mlst_samples
 		mlst_samples=mlst_samples+mlst_output+","
 
@@ -827,7 +827,7 @@ def  pipeline(config_f, thread_):
 		#plasmidfinder_ncbi_path=os.path.join(pipeline_path+'/mlst/blast-2.2.26/')
 		with open(file_out, 'a') as logf:
 		 #plasmidfinder.py -i ./test/test.fsa -o ./test/ -mp blastn -x -p ./database/ -q
-			print "python3.5 %s -i %s -o %s -p %s -mp blastn -x" % (plasmidfinder_path,plasmid_assembly,plasmids_directory,plasmidfinder_DB_path)
+			#print "python3.5 %s -i %s -o %s -p %s -mp blastn -x" % (plasmidfinder_path,plasmid_assembly,plasmids_directory,plasmidfinder_DB_path)
 			subprocess.call(["python3.5",plasmidfinder_path, "-i", plasmid_assembly, "-o", plasmids_directory, "-p", plasmidfinder_DB_path, "-x","-mp", "blastn"], stdout=logf)
 		logging.info("PlasmidFinder finished "+sample_name)
 		global plasmidsFinder_output
@@ -873,7 +873,7 @@ def  pipeline(config_f, thread_):
 		virulencefinder_DB_path=os.path.join(pipeline_path+'/virulencefinder/database')
 		virulencefinder_ncbi_path=os.path.join(pipeline_path+'/mlst/blast-2.2.26/')
 		with open(file_out, 'a') as logf:
-			print "perl %s -i %s -o %s -d %s -k %s -s %s -b %s" % (virulencefinder_path,vir_assembly,vir_directory,virulencefinder_DB_path,threshold,database,virulencefinder_ncbi_path)
+			#print "perl %s -i %s -o %s -d %s -k %s -s %s -b %s" % (virulencefinder_path,vir_assembly,vir_directory,virulencefinder_DB_path,threshold,database,virulencefinder_ncbi_path)
 			subprocess.call(["perl",virulencefinder_path, "-i", vir_assembly, "-o", vir_directory, "-d", virulencefinder_DB_path, "-k", threshold, "-s", database, "-b", virulencefinder_ncbi_path], stdout=logf)
 			#subprocess.call(["python3.5",virulencefinder_path, "-i", vir_assembly,"-o",vir_directory,"-mp", "blastn", "-x", "-p", virulencefinder_DB_path], stdout=logf)
 			#print "python3.5 %s -i  %s -o  %s -mp blastn -x -p  %s" % (virulencefinder_path,vir_assembly,vir_directory,virulencefinder_DB_path)
@@ -1965,7 +1965,8 @@ app.addRadioButton("mlst_","yes",raw,4)
 app.addRadioButton("mlst_","no",raw,3)
 app.setRadioTick("mlst_", tick=True)
 raw=raw+1
-app.addLabelOptionBox("Species", ["ecoli_2","ecoli","kpneumoniae","paeruginosa","pfluorescens","abaumannii","abaumannii_2","senterica","saureus","spneumoniae","spyogenes","efaecalis","efaecium","----------------------------","abaumannii","abaumannii_2","achromobacter","aeromonas","afumigatus","aphagocytophilum","arcobacter","bbacilliformis","bcc","bcereus","bhampsonii","bhenselae","bhyodysenteriae","bintermedia","blicheniformis","bordetella","borrelia","bpilosicoli","bpseudomallei","brachyspira","brucella","bsubtilis","calbicans","campylobacter","cbotulinum","cconcisus","cdifficile","cdiphtheriae","cfetus","cfreundii","cglabrata","chelveticus","chlamydiales","chyointestinalis","cinsulaenigrae","ckrusei","clanienae","clari","cmaltaromaticum","cronobacter","csepticum","csinensis","csputorum","ctropicalis","cupsaliensis","dnodosus","ecloacae","edwardsiella","fpsychrophilum","ganatis","hcinaedi","hinfluenzae","hparasuis","hpylori","hsuis","kaerogenes","kkingae","koxytoca","kseptempunctata","leptospira","leptospira_2","leptospira_3","liberibacter","llactis","lmonocytogenes","lsalivarius","mabscessus","magalactiae","mbovis","mcanis","mcaseolyticus","mcatarrhalis","mhaemolytica","mhyopneumoniae","mhyorhinis","miowae","mmassiliense","mplutonius","mpneumoniae","msynoviae","mycobacteria","neisseria","orhinotracheale","otsutsugamushi","pacnes","pdamselae","pgingivalis","plarvae","pmultocida_multihost","pmultocida_rirdc","ppentosaceus","pputida","psalmonis","ranatipestifer","rhodococcus","sagalactiae","sbsec","scanis","sdysgalactiae","sepidermidis","sgallolyticus","shaemolyticus","shominis","sinorhizobium","slugdunensis","smaltophilia","soralis","sparasitica","spseudintermedius","ssuis","sthermophilus","sthermophilus_2","streptomyces","suberis","szooepidemicus","taylorella","tenacibaculum","tpallidum","tvaginalis","ureaplasma","vcholerae","vcholerae2","vibrio","vparahaemolyticus","vtapetis","vvulnificus","wolbachia","xfastidiosa","yersinia","ypseudotuberculosis","yruckeri"], raw,3,2)
+app.addLabelOptionBox("Species", ["ecoli","ecoli_2","kpneumoniae","paeruginosa","pfluorescens","abaumannii","abaumannii_2","senterica","saureus","spneumoniae","spyogenes","efaecalis","efaecium","----------------------------","achromobacter","aeromonas","afumigatus","aphagocytophilum","arcobacter","bcc","bcereus","bhampsonii","bhenselae","bhyodysenteriae","bintermedia","blicheniformis","bordetella","borrelia","bpilosicoli","bpseudomallei","brachyspira","bsubtilis","calbicans","campylobacter","cbotulinum","cconcisus","cdifficile","cdiphtheriae","cfetus","cfreundii","cglabrata","chelveticus","chlamydiales","chyointestinalis","cinsulaenigrae","ckrusei","clanienae","clari","cmaltaromaticum","cronobacter","csepticum","csinensis","csputorum","ctropicalis","cupsaliensis","ecloacae","fpsychrophilum","hcinaedi","hinfluenzae","hparasuis","hpylori","hsuis","kkingae","koxytoca","kseptempunctata","leptospira","leptospira_2","leptospira_3","llactis","lmonocytogenes","lsalivarius","mabscessus","magalactiae","mbovis","mcatarrhalis","mhaemolytica","mhyopneumoniae","mhyorhinis","mmassiliense","mplutonius","mpneumoniae","neisseria","orhinotracheale","otsutsugamushi","pacnes","pgingivalis","plarvae","pmultocida_multihost","pmultocida_rirdc","ppentosaceus","ranatipestifer","sagalactiae","sbsec","scanis","sdysgalactiae","sepidermidis","sgallolyticus","shaemolyticus","shominis","sinorhizobium","slugdunensis","smaltophilia","soralis","spseudintermedius","ssuis","sthermophilus","sthermophilus_2","streptomyces","suberis","szooepidemicus","taylorella","tenacibaculum","tvaginalis","vcholerae","vibrio","vparahaemolyticus","vtapetis","vvulnificus","wolbachia","xfastidiosa","yersinia","ypseudotuberculosis","yruckeri"], raw,3,2)
+#app.addLabelOptionBox("Species", ["ecoli_2","ecoli","kpneumoniae","paeruginosa","pfluorescens","abaumannii","abaumannii_2","senterica","saureus","spneumoniae","spyogenes","efaecalis","efaecium","----------------------------","abaumannii","abaumannii_2","achromobacter","aeromonas","afumigatus","aphagocytophilum","arcobacter","bbacilliformis","bcc","bcereus","bhampsonii","bhenselae","bhyodysenteriae","bintermedia","blicheniformis","bordetella","borrelia","bpilosicoli","bpseudomallei","brachyspira","brucella","bsubtilis","calbicans","campylobacter","cbotulinum","cconcisus","cdifficile","cdiphtheriae","cfetus","cfreundii","cglabrata","chelveticus","chlamydiales","chyointestinalis","cinsulaenigrae","ckrusei","clanienae","clari","cmaltaromaticum","cronobacter","csepticum","csinensis","csputorum","ctropicalis","cupsaliensis","dnodosus","ecloacae","edwardsiella","fpsychrophilum","ganatis","hcinaedi","hinfluenzae","hparasuis","hpylori","hsuis","kaerogenes","kkingae","koxytoca","kseptempunctata","leptospira","leptospira_2","leptospira_3","liberibacter","llactis","lmonocytogenes","lsalivarius","mabscessus","magalactiae","mbovis","mcanis","mcaseolyticus","mcatarrhalis","mhaemolytica","mhyopneumoniae","mhyorhinis","miowae","mmassiliense","mplutonius","mpneumoniae","msynoviae","mycobacteria","neisseria","orhinotracheale","otsutsugamushi","pacnes","pdamselae","pgingivalis","plarvae","pmultocida_multihost","pmultocida_rirdc","ppentosaceus","pputida","psalmonis","ranatipestifer","rhodococcus","sagalactiae","sbsec","scanis","sdysgalactiae","sepidermidis","sgallolyticus","shaemolyticus","shominis","sinorhizobium","slugdunensis","smaltophilia","soralis","sparasitica","spseudintermedius","ssuis","sthermophilus","sthermophilus_2","streptomyces","suberis","szooepidemicus","taylorella","tenacibaculum","tpallidum","tvaginalis","ureaplasma","vcholerae","vcholerae2","vibrio","vparahaemolyticus","vtapetis","vvulnificus","wolbachia","xfastidiosa","yersinia","ypseudotuberculosis","yruckeri"], raw,3,2)
 app.setOptionBox("Species",0, value=True)
 app.setOptionBoxHeight("Species", 1)
 app.setOptionBoxWidth("Species", 5)

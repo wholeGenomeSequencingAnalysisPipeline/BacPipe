@@ -118,16 +118,16 @@ WORKDIR /BacPipe
 
 #MLST updates
 ##rename outdated plasmidfinder
-RUN mv /BacPipe/mlst /BacPipe/mlst_perl
+#RUN mv /BacPipe/mlst /BacPipe/mlst_perl
 ##Download the new version
-RUN git clone https://bitbucket.org/genomicepidemiology/mlst.git
-WORKDIR /BacPipe/mlst
-RUN chmod 755 ./mlst.py
+#RUN git clone https://bitbucket.org/genomicepidemiology/mlst.git
+#WORKDIR /BacPipe/mlst
+#RUN chmod 755 ./mlst.py
 ##Download the database
-RUN git clone https://bitbucket.org/genomicepidemiology/mlst_db.git
-WORKDIR /BacPipe/mlst/mlst_db
-RUN MLST_DB=$(pwd)
-RUN python3 /BacPipe/mlst/mlst_db/INSTALL.py kma_index
-RUN mv /BacPipe/mlst_perl/blast-2.2.26 /BacPipe/mlst/
+#RUN git clone https://bitbucket.org/genomicepidemiology/mlst_db.git
+#WORKDIR /BacPipe/mlst/mlst_db
+#RUN MLST_DB=$(pwd)
+#RUN python3 /BacPipe/mlst/mlst_db/INSTALL.py kma_index
+#RUN mv /BacPipe/mlst_perl/blast-2.2.26 /BacPipe/mlst/
 WORKDIR /BacPipe
 
