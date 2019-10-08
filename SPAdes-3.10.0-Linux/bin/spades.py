@@ -118,9 +118,9 @@ def print_used_values(cfg, log):
         print_value(cfg, "error_correction", "qvoffset", "PHRED offset")
 
         if cfg["error_correction"].gzip_output:
-            log.info("  Corrected reads will be compressed (with gzip)")
+            log.info("  Corrected reads will be compressed")
         else:
-            log.info("  Corrected reads will NOT be compressed (with gzip)")
+            log.info("  Corrected reads will NOT be compressed")
 
     # assembly
     if "assembly" in cfg:
@@ -158,7 +158,7 @@ def print_used_values(cfg, log):
 
 
 def fill_cfg(options_to_parse, log, secondary_filling=False):
-    skip_output_dir=secondary_filling
+    skip_output_dir = secondary_filling
     skip_stop_after = secondary_filling
     load_processed_dataset=secondary_filling
 
@@ -211,6 +211,7 @@ def fill_cfg(options_to_parse, log, secondary_filling=False):
             options_storage.configs_dir = support.check_dir_existence(arg)
         elif opt == "--reference":
             options_storage.reference = support.check_file_existence(arg, 'reference', log)
+            options_storage.developer_mode = True
         elif opt == "--series-analysis":
             options_storage.series_analysis = support.check_file_existence(arg, 'series-analysis', log)
         elif opt == "--dataset":
@@ -239,8 +240,19 @@ def fill_cfg(options_to_parse, log, secondary_filling=False):
             options_storage.large_genome = True
         elif opt == "--plasmid":
             options_storage.plasmid = True
+
         elif opt == "--rna":
             options_storage.rna = True
+        elif opt.startswith("--ss-"):  # strand specificity, RNA-Seq only
+            if opt == "--ss-rf":
+                options_storage.strand_specificity = 'rf'
+            elif opt == "--ss-fr":
+                options_storage.strand_specificity = 'fr'
+        elif opt == "--fast":  # fast run, RNA-Seq only
+            options_storage.fast = True
+        elif opt == "--fast:false":
+            options_storage.fast = False
+
         elif opt == "--iontorrent":
             options_storage.iontorrent = True
         elif opt == "--disable-gzip-output":
@@ -271,9 +283,9 @@ def fill_cfg(options_to_parse, log, secondary_filling=False):
         elif opt == "--continue":
             options_storage.continue_mode = True
         elif opt == "--restart-from":
-            if arg not in ['ec', 'as', 'mc', 'scc', 'tpp'] and not arg.startswith('k'):
+            if arg not in ['ec', 'as', 'mc', 'scc', 'tpp', 'last'] and not arg.startswith('k'):
                 support.error("wrong value for --restart-from option: " + arg +
-                              " (should be 'ec', 'as', 'k<int>', or 'mc'", log)
+                              " (should be 'ec', 'as', 'k<int>', 'mc', or 'last'", log)
             options_storage.continue_mode = True
             options_storage.restart_from = arg
         elif opt == "--stop-after":
@@ -295,6 +307,8 @@ def fill_cfg(options_to_parse, log, secondary_filling=False):
             else:
                 support.error('wrong PHRED quality offset value: ' + arg +
                               ' (should be either 33, 64, or \'auto\')', log)
+        elif opt == "--save-gp":
+            options_storage.save_gp = True
         elif opt == "--cov-cutoff":
             if arg == 'auto' or arg == 'off':
                 options_storage.cov_cutoff = arg
@@ -303,6 +317,18 @@ def fill_cfg(options_to_parse, log, secondary_filling=False):
             else:
                 support.error('wrong value for --cov-cutoff option: ' + arg +
                               ' (should be a positive float number, or \'auto\', or \'off\')', log)
+        elif opt == "--hidden-cov-cutoff":
+            if support.is_float(arg) and float(arg) > 0.0:
+                options_storage.lcer_cutoff = float(arg)
+            else:
+                support.error('wrong value for --hidden-cov-cutoff option: ' + arg +
+                              ' (should be a positive float number)', log)
+        elif opt == "--read-cov-threshold":
+            if support.is_int(arg) and int(arg) >= 0:
+                options_storage.read_cov_threshold = int(arg)
+            else:
+                support.error('wrong value for ----read-cov-threshold option: ' + arg +
+                              ' (should be a non-negative integer number)', log)
         elif opt == '-i' or opt == "--iterations":
             options_storage.iterations = int(arg)
 
@@ -334,8 +360,6 @@ def fill_cfg(options_to_parse, log, secondary_filling=False):
         elif opt == "--test":
             options_storage.set_test_options()            
             #break
-        elif opt == "--diploid":
-            options_storage.diploid_mode = True
         elif opt == "--truseq":
             options_storage.enable_truseq_mode()
         else:
@@ -356,20 +380,31 @@ def fill_cfg(options_to_parse, log, secondary_filling=False):
             support.error("the output_dir should exist for --continue and for --restart-from!", log)
         os.makedirs(options_storage.output_dir)
     if options_storage.restart_from:
-        if options_storage.continue_mode: # saving parameters specified with --restart-from
+        if options_storage.continue_mode:  # saving parameters specified with --restart-from
             if not support.dataset_is_empty(dataset_data):
                 support.error("you cannot specify reads with --restart-from option!", log)
             options_storage.save_restart_options(log)
         else:  # overriding previous run parameters
             options_storage.load_restart_options()
+    elif options_storage.continue_mode:  # it is just --continue, NOT --restart-from
+        if len(options) != 2:  # one for output_dir (required) and another one for --continue itself
+           support.error("you cannot specify any option except -o with --continue option! "
+                         "Please use '--restart-from last' if you need to change some "
+                         "of the options from the initial run and continue from the last available checkpoint.", log)
     if options_storage.meta:
         if options_storage.careful or options_storage.mismatch_corrector or options_storage.cov_cutoff != "off":
             support.error("you cannot specify --careful, --mismatch-correction or --cov-cutoff in metagenomic mode!", log)
     if options_storage.rna:
         if options_storage.careful:
             support.error("you cannot specify --careful in RNA-Seq mode!", log)
-        if options_storage.k_mers and options_storage.k_mers != 'auto' and len(options_storage.k_mers) > 1:
-            support.error("you cannot specify multiple k-mer sizes in RNA-Seq mode!", log)
+#        if options_storage.k_mers and options_storage.k_mers != 'auto' and len(options_storage.k_mers) > 1:
+#            support.error("you cannot specify multiple k-mer sizes in RNA-Seq mode!", log)
+        if options_storage.restart_from and options_storage.restart_from.startswith('k'):
+            support.error("you cannot restart rnaSPAdes from a certain k-mer size, use --restart-from as", log)
+    if [options_storage.meta, options_storage.large_genome, options_storage.truseq_mode,
+       options_storage.rna, options_storage.plasmid, options_storage.single_cell].count(True) > 1:
+        support.error("you cannot simultaneously use more than one mode out of "
+                      "Metagenomic, Large genome, Illumina TruSeq, RNA-Seq, Plasmid, and Single-cell!", log)
     if options_storage.continue_mode:
         return None, None
 
@@ -403,11 +438,18 @@ def fill_cfg(options_to_parse, log, secondary_filling=False):
         if len(dataset_data) != len(support.get_lib_ids_by_type(dataset_data, spades_logic.READS_TYPES_USED_IN_RNA_SEQ)):
             support.error('you cannot specify any data types except ' +
                           ', '.join(spades_logic.READS_TYPES_USED_IN_RNA_SEQ) + ' in RNA-Seq mode!')
-        if len(support.get_lib_ids_by_type(dataset_data, 'paired-end')) > 1:
-            support.error('you cannot specify more than one paired-end library in RNA-Seq mode!')
+        #if len(support.get_lib_ids_by_type(dataset_data, 'paired-end')) > 1:
+        #    support.error('you cannot specify more than one paired-end library in RNA-Seq mode!')
+    if options_storage.meta and not options_storage.only_error_correction:
+        if len(support.get_lib_ids_by_type(dataset_data, "paired-end")) != 1 or \
+           len(dataset_data) - min(1, len(support.get_lib_ids_by_type(dataset_data, ["tslr", "pacbio", "nanopore"]))) > 1:
+            support.error('you cannot specify any data types except a single paired-end library '
+                          '(optionally accompanied by a single library of '
+                          'TSLR-contigs, or PacBio reads, or Nanopore reads) in metaSPAdes mode!')
 
     if existing_dataset_data is None:
-        pyyaml.dump(dataset_data, open(options_storage.dataset_yaml_filename, 'w'))
+        pyyaml.dump(dataset_data, open(options_storage.dataset_yaml_filename, 'w'),
+                    default_flow_style=False, default_style='"', width=float("inf"))
 
     options_storage.set_default_values()
     ### FILLING cfg
@@ -454,12 +496,13 @@ def fill_cfg(options_to_parse, log, secondary_filling=False):
         if options_storage.k_mers:
             cfg["assembly"].__dict__["iterative_K"] = options_storage.k_mers
         elif options_storage.rna:
-            cfg["assembly"].__dict__["iterative_K"] = options_storage.K_MERS_RNA
+            cfg["assembly"].__dict__["iterative_K"] = 'auto'
         else:
             cfg["assembly"].__dict__["iterative_K"] = options_storage.K_MERS_SHORT
         cfg["assembly"].__dict__["disable_rr"] = options_storage.disable_rr
-        cfg["assembly"].__dict__["diploid_mode"] = options_storage.diploid_mode
         cfg["assembly"].__dict__["cov_cutoff"] = options_storage.cov_cutoff
+        cfg["assembly"].__dict__["lcer_cutoff"] = options_storage.lcer_cutoff
+        cfg["assembly"].__dict__["save_gp"] = options_storage.save_gp
         if options_storage.spades_heap_check:
             cfg["assembly"].__dict__["heap_check"] = options_storage.spades_heap_check
         if options_storage.read_buffer_size:
@@ -470,7 +513,7 @@ def fill_cfg(options_to_parse, log, secondary_filling=False):
     if (not options_storage.only_error_correction) and options_storage.mismatch_corrector:
         cfg["mismatch_corrector"] = empty_config()
         cfg["mismatch_corrector"].__dict__["skip-masked"] = None
-        cfg["mismatch_corrector"].__dict__["bwa"] = os.path.join(bin_home, "bwa-spades")
+        cfg["mismatch_corrector"].__dict__["bwa"] = os.path.join(bin_home, "spades-bwa")
         cfg["mismatch_corrector"].__dict__["threads"] = options_storage.threads
         cfg["mismatch_corrector"].__dict__["output-dir"] = options_storage.output_dir
     cfg["run_truseq_postprocessing"] = options_storage.run_truseq_postprocessing
@@ -512,6 +555,38 @@ def check_cfg_for_partial_run(cfg, type='restart-from'):  # restart-from ot stop
                 if k_str.find(":") != -1:
                     k_str = k_str[:k_str.find(":")]
                 support.error("failed to " + action + " K=%s because this K " % k_str + verb + " not specified!")
+
+
+def rna_k_values(support, option_storage, dataset_data, log):
+    rna_rl = support.get_reads_length(dataset_data, log, ['merged reads'])
+    upper_k = int(rna_rl / 2) - 1
+    if upper_k % 2 == 0:
+        upper_k -= 1
+
+    lower_k = min(max(int(rna_rl / 3), options_storage.RNA_MIN_K), options_storage.RNA_MAX_LOWER_K)
+    if lower_k % 2 == 0:
+        lower_k -= 1
+
+    use_iterative = True
+    if upper_k <= lower_k:
+        use_iterative= False
+
+    if upper_k < options_storage.RNA_MIN_K:
+        support.warning("\n" + 'Auto K value (' + str(k_value) + ') is too small, recommended to be at least %d.\n' % (options_storage.RNA_MIN_K))
+        if rna_rl <= options_storage.RNA_MIN_K:
+            support.warning('Read length is too small (%d), but keeping current K value anyway. Consider setting K manually. K\n' % (rna_rl))
+        else:
+            upper_k = options_storage.RNA_MIN_K
+        log.info('Upper K value is set to %d.\n' % (upper_k))
+
+    if upper_k > options_storage.MAX_K:
+        log.info("\n" + 'Auto K value (' + str(upper_k) + ') is too large, all K values should not exceed %d. Setting k=%d.\n'
+                 % (options_storage.MAX_K, options_storage.MAX_K))
+        upper_k = options_storage.MAX_K
+
+    if options_storage.fast or (not use_iterative):
+        return [upper_k]
+    return [lower_k, upper_k]
 
 
 def get_options_from_params(params_filename, running_script):
@@ -644,6 +719,13 @@ def main(args):
     if not options_storage.continue_mode:
         log.info("\n======= SPAdes pipeline started. Log can be found here: " + log_filename + "\n")
 
+    if options_storage.rna and cfg["assembly"].__dict__["iterative_K"] == 'auto':
+        k_values = options_storage.K_MERS_RNA
+        if not options_storage.iontorrent:
+            k_values = rna_k_values(support, options_storage, dataset_data, log)
+        cfg["assembly"].__dict__["iterative_K"] = k_values
+        log.info("K values to be used: " + str(k_values))
+
     # splitting interlaced reads and processing Ns in additional contigs if needed
     if support.dataset_has_interlaced_reads(dataset_data) or support.dataset_has_additional_contigs(dataset_data)\
             or support.dataset_has_nxmate_reads(dataset_data):
@@ -658,7 +740,8 @@ def main(args):
         if support.dataset_has_additional_contigs(dataset_data):
             dataset_data = support.process_Ns_in_additional_contigs(dataset_data, dir_for_split_reads, log)
         options_storage.dataset_yaml_filename = os.path.join(options_storage.output_dir, "input_dataset.yaml")
-        pyyaml.dump(dataset_data, open(options_storage.dataset_yaml_filename, 'w'))
+        pyyaml.dump(dataset_data, open(options_storage.dataset_yaml_filename, 'w'),
+                    default_flow_style=False, default_style='"', width=float("inf"))
         cfg["dataset"].yaml_filename = options_storage.dataset_yaml_filename
 
     try:
@@ -814,7 +897,7 @@ def main(args):
                     if os.path.isfile(result_scaffolds_filename):
                         shutil.move(result_scaffolds_filename, assembled_scaffolds_filename)
                     reads_library = dataset_data[0]
-                    alignment_bin = os.path.join(bin_home, "bwa-spades")
+                    alignment_bin = os.path.join(bin_home, "spades-bwa")
                     alignment_dir = os.path.join(cfg["common"].output_dir, "alignment")
                     sam_files = alignment.align_bwa(alignment_bin, assembled_scaffolds_filename, dataset_data, alignment_dir, log, options_storage.threads)
                     moleculo_postprocessing.moleculo_postprocessing(assembled_scaffolds_filename, truseq_long_reads_file_base, sam_files, log)
@@ -894,29 +977,37 @@ def main(args):
             if "assembly" in cfg and os.path.isfile(result_contigs_filename):
                 message = " * Assembled contigs are in " + support.process_spaces(result_contigs_filename)
                 log.info(message)
-            if options_storage.rna:
-                if "assembly" in cfg and os.path.isfile(result_transcripts_filename):
+            if options_storage.rna and "assembly" in cfg:
+                if os.path.isfile(result_transcripts_filename):
                     message = " * Assembled transcripts are in " + support.process_spaces(result_transcripts_filename)
                     log.info(message)
-                if "assembly" in cfg and os.path.isfile(result_transcripts_paths_filename):
+                if os.path.isfile(result_transcripts_paths_filename):
                     message = " * Paths in the assembly graph corresponding to the transcripts are in " + \
                               support.process_spaces(result_transcripts_paths_filename)
                     log.info(message)
-            else:
-                if "assembly" in cfg and os.path.isfile(result_scaffolds_filename):
+                for filtering_type in options_storage.filtering_types:
+                    result_filtered_transcripts_filename = os.path.join(cfg["common"].output_dir,
+                                                                        filtering_type + "_filtered_" +
+                                                                        options_storage.transcripts_name)
+                    if os.path.isfile(result_filtered_transcripts_filename):
+                        message = " * " + filtering_type.capitalize() + " filtered transcripts are in " + \
+                                  support.process_spaces(result_filtered_transcripts_filename)
+                        log.info(message)
+            elif "assembly" in cfg:
+                if os.path.isfile(result_scaffolds_filename):
                     message = " * Assembled scaffolds are in " + support.process_spaces(result_scaffolds_filename)
                     log.info(message)
-                if "assembly" in cfg and os.path.isfile(result_assembly_graph_filename):
+                if os.path.isfile(result_assembly_graph_filename):
                     message = " * Assembly graph is in " + support.process_spaces(result_assembly_graph_filename)
                     log.info(message)
-                if "assembly" in cfg and os.path.isfile(result_assembly_graph_filename_gfa):
+                if os.path.isfile(result_assembly_graph_filename_gfa):
                     message = " * Assembly graph in GFA format is in " + support.process_spaces(result_assembly_graph_filename_gfa)
                     log.info(message)
-                if "assembly" in cfg and os.path.isfile(result_contigs_paths_filename):
+                if os.path.isfile(result_contigs_paths_filename):
                     message = " * Paths in the assembly graph corresponding to the contigs are in " + \
                               support.process_spaces(result_contigs_paths_filename)
                     log.info(message)
-                if "assembly" in cfg and os.path.isfile(result_scaffolds_paths_filename):
+                if os.path.isfile(result_scaffolds_paths_filename):
                     message = " * Paths in the assembly graph corresponding to the scaffolds are in " + \
                               support.process_spaces(result_scaffolds_paths_filename)
                     log.info(message)
