@@ -800,7 +800,8 @@ def  pipeline(config_f, thread_):
 		logging.info("MLST typing...")
 		#mlst_path=os.path.join(pipeline_path+'/mlst/mlst.py')
 		mlst_path=os.path.join(pipeline_path+'/mlst/mlst.pl')
-		mlst_DB_path=os.path.join(pipeline_path+'/mlst/mlst_db/')
+		#mlst_DB_path=os.path.join(pipeline_path+'/mlst/mlst_db/')
+		mlst_DB_path=os.path.join(pipeline_path+'/mlst/database/')
 		#mlst_ncbi_path=os.path.join(pipeline_path+'/mlst/blast-2.2.26/')
 		with open(file_out, 'a') as logf:
 			subprocess.call([mlst_path, "-i", mlst_assembly, "-o", mlst_directory, "-d", mlst_DB_path, "-s", organism, "-b", mlst_ncbi_path], stdout=logf)
