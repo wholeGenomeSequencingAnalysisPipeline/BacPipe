@@ -168,57 +168,57 @@ Emm Typing:
 	Facklam R, Beall B, Efstratiou A, Fischetti V, Johnson D, Kaplan E, et al. emm Typing and Validation of Provisional M Types for Group A Streptococci. Emerg Infect Dis. 1999;5(2):247-253. 
 	Available at: ftp://ftp.cdc.gov/pub/infectious_diseases/biotech/tsemm/trimmed.tfa
 	Licence: GNU
-ParSNP (v1.2):
+ParSNP:
 
 	Treangen TJ, Ondov BD, Koren S, Phillippy AM (2014) Rapid Core-Genome Alignment and Visualization for Thousands of Microbial Genomes.
 	Available at: http://harvest.readthedocs.io/en/latest/content/parsnp.html
 	Licence owner: Battelle National Biodefense Institute (BNBI)
-CARD (v1.1.7):
+CARD:
 
 	Jia et al. 2017. CARD 2017: expansion and model-centric curation of the Comprehensive Antibiotic Resistance Database. Nucleic Acids Research, 45, D566-573.
 	Available at: https://card.mcmaster.ca
 	Licence owner: McMaster University
-VirulenceFinder (v1.4):
+VirulenceFinder:
 
 	Joensen KG, Scheutz F, Lund O, Hasman H, Kaas RS, Nielsen EM, Aarestrup FM, Real-time whole-genome sequencing for routine typing, surveillance, and outbreak detection of verotoxigenic Escherichia coli. J. Clin. Micobiol. 2014. 52(5): 1501-1510.
 	Available at: http://www.genomicepidemiology.org
 	Licence: Apache License
-ResFinder (v2.1):
+ResFinder:
 
 	Zankari E, Hasman H, Cosentino S, Vestergaard M, Rasmussen S, Lund O, Aarestrup FM, Larsen MV, Identification of acquired antimicrobial resistance genes, J Antimicrob Chemother. 2012 Jul 10.
 	Available at: http://www.genomicepidemiology.org
 	Licence: Apache License 
-PlasmidFinder (v1.3):
+PlasmidFinder:
 
 	Carattoli A, Zankari E, Garcia-Fernandez A, Voldby Larsen M, Lund O, Villa L, Aarestrup FM, Hasman H.,PlasmidFinder and pMLST: in silico detection and typing of plasmids. Antimicrob. Agents Chemother. 2014. April 28th.
 	Available at: http://www.genomicepidemiology.org
 	Licence: Apache License 
-MLST (v1.8):
+MLST:
 
 	Larsen MV, Cosentino S, Rasmussen S, Friis C, Hasman H, Marvig RL, Jelsbak L, Sicheritz-Pontén T, Ussery DW, Aarestrup FM and Lund O., Multilocus Sequence Typing of Total Genome Sequenced Bacteria. J. Clin. Micobiol. 2012. 50(4): 1355-1361.
 	Available at: http://www.genomicepidemiology.org
 	Licence: Apache License 
-Resfams (v1.2):
+Resfams:
 	
 	Gibson MK, Forsberg KJ, Dantas G. Improved annotation of antibiotic resistance functions reveals microbial resistomes cluster by ecology. The ISME Journal. 2014, doi:ISMEJ.2014.106')
 	Available at: http://www.dantaslab.org/resfams/
 	Licence: 
-TrimGalore (v0.4.2):
+TrimGalore:
 
 	Available at: https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/
 	Licence: GNU
-SPAdes (v3.10.0):
+SPAdes:
 
 	Bankevich, A., Nurk, S., Antipov, D., Gurevich, A.A., Dvorkin, M., et al.: SPAdes: A New Genome Assembly Algorithm and Its Applications to Single-Cell Sequencing. Journal of Computational Biology 19(5), 455–477 (2012)
 	Available at http://spades.bioinf.spbau.ru/
 	Licence: GNU
-NCBI Blast (v2.4.17):
+NCBI Blast:
 
 	Johnson M, Zaretskaya I, Raytselis Y, Merezhuk Y, McGinnis S, & Madden T.L. (2008) "NCBI BLAST: a better web interface" Nucleic Acids Res. 36:W5-W9.
 	Available at https://www.ncbi.nlm.nih.gov/guide/howto/run-blast-local/
 	Licence: GNU
 
-cutadapt (v1.12):
+cutadapt:
 
 	MARTIN, Marcel. Cutadapt removes adapter sequences from high-throughput sequencing reads. EMBnet.journal, [S.l.], v. 17, n. 1, p. pp. 10-12, may. 2011.
 	Available at https://pypi.python.org/pypi/cutadapt 
