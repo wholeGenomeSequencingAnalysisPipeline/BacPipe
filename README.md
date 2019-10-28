@@ -21,6 +21,7 @@ Run X window System (X11) to allow the visualization of the Bacpipe GUI run by d
 For mac
 ```
 	IP=$(ifconfig en0 | grep inet | awk ‘$1==”inet” {print $2}’) 
+	If you are connected via wifi, use en1 instead of en0
 	xhost + $IP 
 	docker run -it -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v <local_data_folder>:<container_data_folder> 	mahmed/bacpipe python ./Pipeline.py unix
