@@ -12,7 +12,7 @@ wget
 
 RUN apt-get upgrade -y perl && apt-get install -y parallel make wget git python-pip locales && pip install -U setuptools && locale-gen --purge en_US.UTF-8 && DEBIAN_FRONTEND="noninteractive" dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
-RUN git clone -b 1.2.5 https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe.git
+RUN git clone -b 1.2.6 https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe.git
 
 WORKDIR /BacPipe
 
