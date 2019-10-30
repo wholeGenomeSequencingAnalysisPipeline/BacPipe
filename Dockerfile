@@ -6,7 +6,7 @@ RUN apt-get upgrade -y perl && apt-get install -y parallel make wget git python-
 RUN git clone -b 1.2.5 https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe.git
 WORKDIR /BacPipe
 #RUN apt-get unzip
-RUN chmod 755 BacPipe/SPAdes-3.13.0-Linux/bin/*
+RUN chmod 755 /BacPipe/SPAdes-3.13.0-Linux/bin/*
 RUN gunzip -c /BacPipe/mlst/blast-2.2.26/bin/makeblastdb.zip > /BacPipe/mlst/blast-2.2.26/bin/makeblastdb
 #RUN unzip /BacPipe/mlst/blast-2.2.26/bin/makeblastdb.zip -d /BacPipe/mlst/blast-2.2.26/bin/
 RUN chmod +x -R /BacPipe/
