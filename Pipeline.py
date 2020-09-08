@@ -922,7 +922,7 @@ def  pipeline(config_f, thread_):
 		gbk_file = glob.glob("*.gbk")
 		gff_file = glob.glob("*.gff")
 		faa_file = glob.glob("*.faa")
-		renamed_gbk = gbk_file[0].replace(gbk_file[0], sample_name + '.gbk')
+		renamed_gbk = gbk_file[0].replace(gbk_file[0], sample_name + '.gbf')
 		renamed_gff = gff_file[0].replace(gff_file[0], sample_name + '.gff')
 
 		shutil.move(gbk_file[0],renamed_gbk)
@@ -1270,7 +1270,7 @@ def  pipeline(config_f, thread_):
 		tracker=0
 		list = [f for f in glob.glob("*_R1_*") if "fastq.gz" in f or "fq.gz" in f ]
 		for illumina_reads_1 in list:
-			logging.info("Reading files ending with _R1_001.fastq.gz for forward and _R1_001.fastq.gz for reverse within the input directory")
+			logging.info("Reading files ending with _R1_001.fastq.gz for forward and _R2_001.fastq.gz for reverse within the input directory")
 			illumina_reads_2 = illumina_reads_1.replace("_R1_", "_R2_")
 			sample_name = illumina_reads_1[:-9]
 			os.chdir(output_directory)
