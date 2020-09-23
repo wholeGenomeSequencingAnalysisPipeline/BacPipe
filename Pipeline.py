@@ -919,7 +919,7 @@ def  pipeline(config_f, thread_):
 			subprocess.call([prokka_path, "--quiet", "--cpus", str(thread_), "--kingdom", "Bacteria", "--addgenes", "--outdir", ann_directory, "--strain", sample_name, "--force", "--centre", "C", "--locustag", "L","--prefix","results",annotation_assembly], stdout=logf)
 		os.chdir(ann_directory)
 		# Rename gbk file with sample name
-		gbk_file = glob.glob("*.gbf")
+		gbk_file = glob.glob("*.gbk")
 		gff_file = glob.glob("*.gff")
 		faa_file = glob.glob("*.faa")
 		renamed_gbk = gbk_file[0].replace(gbk_file[0], sample_name + '.gbk')
