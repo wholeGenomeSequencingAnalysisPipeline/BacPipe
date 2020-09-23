@@ -10,9 +10,14 @@ python \
 python3 \
 wget
 
-RUN apt-get upgrade -y perl && apt-get install -y parallel make wget git python-pip locales && pip install -U setuptools && locale-gen --purge en_US.UTF-8 && DEBIAN_FRONTEND="noninteractive" dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+#RUN echo Y | apt-get install software-properties-common
+#RUN add-apt-repository ppa:deadsnakes/ppa
+#RUN apt-get update
+#RUN echo Y | apt-get install python3.6
 
-RUN git clone -b 1.2.6 https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe.git
+RUN apt-get upgrade -y perl && apt-get install -y parallel make wget git python-pip locales && pip install --upgrade pip && pip install -U setuptools && locale-gen --purge en_US.UTF-8 && DEBIAN_FRONTEND="noninteractive" dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+RUN git clone https://github.com/wholeGenomeSequencingAnalysisPipeline/BacPipe.git
 
 WORKDIR /BacPipe
 
@@ -37,8 +42,11 @@ RUN apt-get update && apt-get upgrade -y perl && apt-get install -y parallel mak
 
 ##prokka#################
 RUN apt-get update && apt-get -y install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl default-jre bioperl
-RUN cpan Bio::Perl && cpan List::Util && git clone https://github.com/tseemann/prokka.git
-RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.9.0+-x64-linux.tar.gz && tar -zxvf ncbi-blast-2.9.0+-x64-linux.tar.gz
+RUN cpan Test::Most 
+RUN cpan Bio::Perl && cpan List::Util 
+RUN git clone https://github.com/tseemann/prokka.git --branch v1.13.3
+#RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.9.0+-x64-linux.tar.gz && tar -zxvf ncbi-blast-2.9.0+-x64-linux.tar.gz
+RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.9.0/ncbi-blast-2.9.0+-x64-linux.tar.gz && tar -zxvf ncbi-blast-2.9.0+-x64-linux.tar.gz
 ENV PATH=${PATH}:"ncbi-blast-2.9.0+/bin"
 RUN cp ./ncbi-blast-2.9.0+/bin/* /usr/bin/
 RUN prokka/bin/prokka --setupdb
@@ -65,7 +73,7 @@ RUN wget -O - https://install.perlbrew.pl | bash
 ENV PATH=${PATH}:/root/perl5/perlbrew/bin/
 RUN perlbrew install-cpanm
 RUN cpanm Bio::Perl
-RUN cpanm LWP::UserAgent
+RUN cpanm -f LWP::UserAgent
 RUN cpanm Try::Tiny::Retry
 RUN cpanm Excel::Writer::XLSX
 
@@ -86,7 +94,8 @@ libz-dev \
 rm -rf /var/cache/apt/* /var/lib/apt/lists/*;
 
 # Install python dependencies
-RUN pip3 install -U biopython tabulate cgecore==1.3.6;
+RUN pip3 install --upgrade pip
+RUN pip3 install -U biopython==1.76 tabulate cgecore==1.3.6;
 
 # Install kma
 RUN git clone --branch 1.0.1 --depth 1 https://bitbucket.org/genomicepidemiology/kma.git; \
