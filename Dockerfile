@@ -129,6 +129,7 @@ WORKDIR /BacPipe/resfinder/resfinder_db
 RUN RES_DB=$(pwd)
 RUN python3 /BacPipe/resfinder/resfinder_db/INSTALL.py kma_index
 WORKDIR /BacPipe
+WORKDIR /BacPipe
 
 #MLST updates
 ##rename outdated plasmidfinder
